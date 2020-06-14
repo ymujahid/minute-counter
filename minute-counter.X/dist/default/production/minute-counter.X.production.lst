@@ -1,395 +1,1734 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Fri Jun 12 19:14:36 2020
+                                                                                               Sun Jun 14 16:19:44 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F877A
      2                           	opt	pw 120
      3                           	opt	flic
-     4                           	psect	idataCOMMON,global,class=CODE,delta=2
-     5                           	psect	strings,global,class=STRING,delta=2
-     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     7                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1
+     4                           	psect	strings,global,class=STRING,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
      8                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     9                           	psect	maintext,global,class=CODE,split=1,delta=2
-    10                           	dabs	1,0x7E,2
-    11  0000                     
-    12                           ; Version 2.10
-    13                           ; Generated 31/07/2019 GMT
-    14                           ; 
-    15                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    16                           ; All rights reserved.
-    17                           ; 
-    18                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+     9                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	maintext,global,class=CODE,split=1,delta=2
+    11                           	psect	text1,local,class=CODE,merge=1,delta=2
+    12                           	psect	text2,local,class=CODE,merge=1,delta=2
+    13                           	psect	text3,local,class=CODE,merge=1,delta=2
+    14                           	psect	text4,local,class=CODE,merge=1,delta=2
+    15                           	psect	text5,local,class=CODE,merge=1,delta=2
+    16                           	psect	text6,local,class=CODE,merge=1,delta=2
+    17                           	psect	text7,local,class=CODE,merge=1,delta=2
+    18                           	psect	text8,local,class=CODE,merge=1,delta=2
+    19                           	dabs	1,0x7E,2
+    20  0000                     
+    21                           ; Version 2.10
+    22                           ; Generated 31/07/2019 GMT
+    23                           ; 
+    24                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    25                           ; All rights reserved.
+    26                           ; 
+    27                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
       +                          ip").
-    19                           ; 
-    20                           ; Redistribution and use in source and binary forms, with or without modification, are
-    21                           ; permitted provided that the following conditions are met:
-    22                           ; 
-    23                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    28                           ; 
+    29                           ; Redistribution and use in source and binary forms, with or without modification, are
+    30                           ; permitted provided that the following conditions are met:
+    31                           ; 
+    32                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    24                           ;        conditions and the following disclaimer.
-    25                           ; 
-    26                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    33                           ;        conditions and the following disclaimer.
+    34                           ; 
+    35                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    27                           ;        of conditions and the following disclaimer in the documentation and/or other
-    28                           ;        materials provided with the distribution.
-    29                           ; 
-    30                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    36                           ;        of conditions and the following disclaimer in the documentation and/or other
+    37                           ;        materials provided with the distribution.
+    38                           ; 
+    39                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    31                           ;        software without specific prior written permission.
-    32                           ; 
-    33                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    34                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
-      +                          OR
-    35                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
-      +                          T,
-    36                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    37                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    38                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
-      +                          RICT
-    39                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
-      +                          SE OF
-    40                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    40                           ;        software without specific prior written permission.
     41                           ; 
-    42                           ; 
-    43                           ; Code-generator required, PIC16F877A Definitions
-    44                           ; 
-    45                           ; SFR Addresses
-    46  0000                     	;# 
-    47  0001                     	;# 
-    48  0002                     	;# 
-    49  0003                     	;# 
-    50  0004                     	;# 
-    51  0005                     	;# 
-    52  0006                     	;# 
-    53  0007                     	;# 
-    54  0008                     	;# 
-    55  0009                     	;# 
-    56  000A                     	;# 
-    57  000B                     	;# 
-    58  000C                     	;# 
-    59  000D                     	;# 
-    60  000E                     	;# 
-    61  000E                     	;# 
-    62  000F                     	;# 
-    63  0010                     	;# 
-    64  0011                     	;# 
-    65  0012                     	;# 
-    66  0013                     	;# 
-    67  0014                     	;# 
-    68  0015                     	;# 
-    69  0015                     	;# 
-    70  0016                     	;# 
-    71  0017                     	;# 
-    72  0018                     	;# 
-    73  0019                     	;# 
-    74  001A                     	;# 
-    75  001B                     	;# 
-    76  001B                     	;# 
-    77  001C                     	;# 
-    78  001D                     	;# 
-    79  001E                     	;# 
-    80  001F                     	;# 
-    81  0081                     	;# 
-    82  0085                     	;# 
-    83  0086                     	;# 
-    84  0087                     	;# 
-    85  0088                     	;# 
-    86  0089                     	;# 
-    87  008C                     	;# 
-    88  008D                     	;# 
-    89  008E                     	;# 
-    90  0091                     	;# 
-    91  0092                     	;# 
-    92  0093                     	;# 
-    93  0094                     	;# 
-    94  0098                     	;# 
-    95  0099                     	;# 
-    96  009C                     	;# 
-    97  009D                     	;# 
-    98  009E                     	;# 
-    99  009F                     	;# 
-   100  010C                     	;# 
-   101  010D                     	;# 
-   102  010E                     	;# 
-   103  010F                     	;# 
-   104  018C                     	;# 
-   105  018D                     	;# 
-   106  0000                     	;# 
-   107  0001                     	;# 
-   108  0002                     	;# 
-   109  0003                     	;# 
-   110  0004                     	;# 
-   111  0005                     	;# 
-   112  0006                     	;# 
-   113  0007                     	;# 
-   114  0008                     	;# 
-   115  0009                     	;# 
-   116  000A                     	;# 
-   117  000B                     	;# 
-   118  000C                     	;# 
-   119  000D                     	;# 
-   120  000E                     	;# 
-   121  000E                     	;# 
-   122  000F                     	;# 
-   123  0010                     	;# 
-   124  0011                     	;# 
-   125  0012                     	;# 
-   126  0013                     	;# 
-   127  0014                     	;# 
-   128  0015                     	;# 
-   129  0015                     	;# 
-   130  0016                     	;# 
-   131  0017                     	;# 
-   132  0018                     	;# 
-   133  0019                     	;# 
-   134  001A                     	;# 
-   135  001B                     	;# 
-   136  001B                     	;# 
-   137  001C                     	;# 
-   138  001D                     	;# 
-   139  001E                     	;# 
-   140  001F                     	;# 
-   141  0081                     	;# 
-   142  0085                     	;# 
-   143  0086                     	;# 
-   144  0087                     	;# 
-   145  0088                     	;# 
-   146  0089                     	;# 
-   147  008C                     	;# 
-   148  008D                     	;# 
-   149  008E                     	;# 
-   150  0091                     	;# 
-   151  0092                     	;# 
-   152  0093                     	;# 
-   153  0094                     	;# 
-   154  0098                     	;# 
-   155  0099                     	;# 
-   156  009C                     	;# 
-   157  009D                     	;# 
-   158  009E                     	;# 
-   159  009F                     	;# 
-   160  010C                     	;# 
-   161  010D                     	;# 
-   162  010E                     	;# 
-   163  010F                     	;# 
-   164  018C                     	;# 
-   165  018D                     	;# 
-   166                           
-   167                           	psect	idataCOMMON
-   168  07A8                     __pidataCOMMON:	
-   169                           
-   170                           ;initializer for _count
-   171  07A8  3401               	retlw	1
-   172  07A9  3400               	retlw	0
-   173                           
-   174                           	psect	strings
-   175  0003                     __pstrings:	
-   176  0003                     stringtab:	
-   177  0003                     __stringtab:	
-   178  0003                     stringcode:	
-   179                           ;	String table - string pointers are 1 byte each
-   180                           
-   181  0003                     stringdir:	
-   182  0003  3000               	movlw	high stringdir
-   183  0004  008A               	movwf	10
-   184  0005  0804               	movf	4,w
-   185  0006  0A84               	incf	4,f
-   186  0007  0782               	addwf	2,f
-   187  0008                     __stringbase:	
-   188  0008  3400               	retlw	0
-   189  0009                     __end_of__stringtab:	
-   190  0009                     _SEGMENT_MAP:	
-   191  0009  343F               	retlw	63
-   192  000A  3406               	retlw	6
-   193  000B  345B               	retlw	91
-   194  000C  344F               	retlw	79
-   195  000D  3466               	retlw	102
-   196  000E  346D               	retlw	109
-   197  000F  347D               	retlw	125
-   198  0010  3407               	retlw	7
-   199  0011  347F               	retlw	127
-   200  0012  346F               	retlw	111
-   201  0013                     __end_of_SEGMENT_MAP:	
-   202  0009                     _PORTE	set	9
-   203  0008                     _PORTD	set	8
-   204  0007                     _PORTC	set	7
-   205  0006                     _PORTB	set	6
+    42                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    43                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    44                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    45                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    46                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    47                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    48                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    49                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    50                           ; 
+    51                           ; 
+    52                           ; Code-generator required, PIC16F877A Definitions
+    53                           ; 
+    54                           ; SFR Addresses
+    55  0000                     	;# 
+    56  0001                     	;# 
+    57  0002                     	;# 
+    58  0003                     	;# 
+    59  0004                     	;# 
+    60  0005                     	;# 
+    61  0006                     	;# 
+    62  0007                     	;# 
+    63  0008                     	;# 
+    64  0009                     	;# 
+    65  000A                     	;# 
+    66  000B                     	;# 
+    67  000C                     	;# 
+    68  000D                     	;# 
+    69  000E                     	;# 
+    70  000E                     	;# 
+    71  000F                     	;# 
+    72  0010                     	;# 
+    73  0011                     	;# 
+    74  0012                     	;# 
+    75  0013                     	;# 
+    76  0014                     	;# 
+    77  0015                     	;# 
+    78  0015                     	;# 
+    79  0016                     	;# 
+    80  0017                     	;# 
+    81  0018                     	;# 
+    82  0019                     	;# 
+    83  001A                     	;# 
+    84  001B                     	;# 
+    85  001B                     	;# 
+    86  001C                     	;# 
+    87  001D                     	;# 
+    88  001E                     	;# 
+    89  001F                     	;# 
+    90  0081                     	;# 
+    91  0085                     	;# 
+    92  0086                     	;# 
+    93  0087                     	;# 
+    94  0088                     	;# 
+    95  0089                     	;# 
+    96  008C                     	;# 
+    97  008D                     	;# 
+    98  008E                     	;# 
+    99  0091                     	;# 
+   100  0092                     	;# 
+   101  0093                     	;# 
+   102  0094                     	;# 
+   103  0098                     	;# 
+   104  0099                     	;# 
+   105  009C                     	;# 
+   106  009D                     	;# 
+   107  009E                     	;# 
+   108  009F                     	;# 
+   109  010C                     	;# 
+   110  010D                     	;# 
+   111  010E                     	;# 
+   112  010F                     	;# 
+   113  018C                     	;# 
+   114  018D                     	;# 
+   115  0000                     	;# 
+   116  0001                     	;# 
+   117  0002                     	;# 
+   118  0003                     	;# 
+   119  0004                     	;# 
+   120  0005                     	;# 
+   121  0006                     	;# 
+   122  0007                     	;# 
+   123  0008                     	;# 
+   124  0009                     	;# 
+   125  000A                     	;# 
+   126  000B                     	;# 
+   127  000C                     	;# 
+   128  000D                     	;# 
+   129  000E                     	;# 
+   130  000E                     	;# 
+   131  000F                     	;# 
+   132  0010                     	;# 
+   133  0011                     	;# 
+   134  0012                     	;# 
+   135  0013                     	;# 
+   136  0014                     	;# 
+   137  0015                     	;# 
+   138  0015                     	;# 
+   139  0016                     	;# 
+   140  0017                     	;# 
+   141  0018                     	;# 
+   142  0019                     	;# 
+   143  001A                     	;# 
+   144  001B                     	;# 
+   145  001B                     	;# 
+   146  001C                     	;# 
+   147  001D                     	;# 
+   148  001E                     	;# 
+   149  001F                     	;# 
+   150  0081                     	;# 
+   151  0085                     	;# 
+   152  0086                     	;# 
+   153  0087                     	;# 
+   154  0088                     	;# 
+   155  0089                     	;# 
+   156  008C                     	;# 
+   157  008D                     	;# 
+   158  008E                     	;# 
+   159  0091                     	;# 
+   160  0092                     	;# 
+   161  0093                     	;# 
+   162  0094                     	;# 
+   163  0098                     	;# 
+   164  0099                     	;# 
+   165  009C                     	;# 
+   166  009D                     	;# 
+   167  009E                     	;# 
+   168  009F                     	;# 
+   169  010C                     	;# 
+   170  010D                     	;# 
+   171  010E                     	;# 
+   172  010F                     	;# 
+   173  018C                     	;# 
+   174  018D                     	;# 
+   175                           
+   176                           	psect	strings
+   177  0003                     __pstrings:	
+   178  0003                     stringtab:	
+   179  0003                     __stringtab:	
+   180  0003                     stringcode:	
+   181                           ;	String table - string pointers are 1 byte each
+   182                           
+   183  0003                     stringdir:	
+   184  0003  3000               	movlw	high stringdir
+   185  0004  008A               	movwf	10
+   186  0005  0804               	movf	4,w
+   187  0006  0A84               	incf	4,f
+   188  0007  0782               	addwf	2,f
+   189  0008                     __stringbase:	
+   190  0008  3400               	retlw	0
+   191  0009                     __end_of__stringtab:	
+   192  0009                     _SEGMENT_MAP:	
+   193  0009  343F               	retlw	63
+   194  000A  3406               	retlw	6
+   195  000B  345B               	retlw	91
+   196  000C  344F               	retlw	79
+   197  000D  3466               	retlw	102
+   198  000E  346D               	retlw	109
+   199  000F  347D               	retlw	125
+   200  0010  3407               	retlw	7
+   201  0011  347F               	retlw	127
+   202  0012  346F               	retlw	111
+   203  0013  3409               	retlw	9
+   204  0014                     __end_of_SEGMENT_MAP:	
+   205  0009                     _PORTE	set	9
    206  0005                     _PORTA	set	5
-   207  0088                     _TRISD	set	136
-   208  0087                     _TRISC	set	135
-   209  0086                     _TRISB	set	134
-   210                           
-   211                           ; #config settings
-   212  0000                     
-   213                           	psect	cinit
-   214  07F0                     start_initialization:	
-   215  07F0                     __initialization:	
-   216                           
-   217                           ; Initialize objects allocated to COMMON
-   218  07F0  120A  118A  27A8  120A  118A  	fcall	__pidataCOMMON	;fetch initializer
-   219  07F5  00F3               	movwf	__pdataCOMMON& (0+127)
-   220  07F6  120A  118A  27A9  120A  118A  	fcall	__pidataCOMMON+1	;fetch initializer
-   221  07FB  00F4               	movwf	(__pdataCOMMON+1)& (0+127)
-   222  07FC                     end_of_initialization:	
-   223                           ;End of C runtime variable initialization code
-   224                           
-   225  07FC                     __end_of__initialization:	
-   226  07FC  0183               	clrf	3
-   227  07FD  120A  118A  2FAA   	ljmp	_main	;jump to C main() function
-   228                           
-   229                           	psect	dataCOMMON
-   230  0073                     __pdataCOMMON:	
-   231  0073                     _count:	
-   232  0073                     	ds	2
-   233                           
-   234                           	psect	cstackCOMMON
-   235  0070                     __pcstackCOMMON:	
-   236  0070                     ?_main:	
-   237  0070                     ??_main:	
-   238                           ; 1 bytes @ 0x0
-   239                           
-   240                           
-   241                           ; 1 bytes @ 0x0
-   242  0070                     	ds	3
-   243                           
-   244                           	psect	maintext
-   245  07AA                     __pmaintext:	
-   246 ;;
-   247 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
-   248 ;;
-   249 ;; *************** function _main *****************
-   250 ;; Defined at:
-   251 ;;		line 31 in file "minute-counter.c"
-   252 ;; Parameters:    Size  Location     Type
-   253 ;;		None
-   254 ;; Auto vars:     Size  Location     Type
-   255 ;;		None
-   256 ;; Return value:  Size  Location     Type
-   257 ;;                  1    wreg      void 
-   258 ;; Registers used:
-   259 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
-   260 ;; Tracked objects:
-   261 ;;		On entry : B00/0
-   262 ;;		On exit  : 0/0
-   263 ;;		Unchanged: 0/0
-   264 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   265 ;;      Params:         0       0       0       0       0
-   266 ;;      Locals:         0       0       0       0       0
-   267 ;;      Temps:          3       0       0       0       0
-   268 ;;      Totals:         3       0       0       0       0
-   269 ;;Total ram usage:        3 bytes
-   270 ;; Hardware stack levels used:    1
-   271 ;; This function calls:
-   272 ;;		Nothing
-   273 ;; This function is called by:
-   274 ;;		Startup code after reset
-   275 ;; This function uses a non-reentrant model
-   276 ;;
-   277                           
-   278                           
-   279                           ;psect for function _main
-   280  07AA                     _main:	
-   281  07AA                     l636:	
-   282                           ;incstack = 0
-   283                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath]
-   284                           
+   207  0006                     _PORTB	set	6
+   208  0007                     _PORTC	set	7
+   209  0008                     _PORTD	set	8
+   210  0034                     _RB4	set	52
+   211  0035                     _RB5	set	53
+   212  0033                     _RB3	set	51
+   213  0032                     _RB2	set	50
+   214  0031                     _RB1	set	49
+   215  0030                     _RB0	set	48
+   216  0088                     _TRISD	set	136
+   217  0087                     _TRISC	set	135
+   218  0086                     _TRISB	set	134
+   219                           
+   220                           ; #config settings
+   221  0000                     
+   222                           	psect	cinit
+   223  07E8                     start_initialization:	
+   224  07E8                     __initialization:	
+   225                           
+   226                           ; Clear objects allocated to COMMON
+   227  07E8  01FA               	clrf	__pbssCOMMON& (0+127)
+   228  07E9  01FB               	clrf	(__pbssCOMMON+1)& (0+127)
+   229  07EA  01FC               	clrf	(__pbssCOMMON+2)& (0+127)
+   230  07EB  01FD               	clrf	(__pbssCOMMON+3)& (0+127)
+   231                           
+   232                           ; Clear objects allocated to BANK0
+   233  07EC  1283               	bcf	3,5	;RP0=0, select bank0
+   234  07ED  1303               	bcf	3,6	;RP1=0, select bank0
+   235  07EE  01A0               	clrf	__pbssBANK0& (0+127)
+   236  07EF  01A1               	clrf	(__pbssBANK0+1)& (0+127)
+   237  07F0  01A2               	clrf	(__pbssBANK0+2)& (0+127)
+   238  07F1  01A3               	clrf	(__pbssBANK0+3)& (0+127)
+   239  07F2  01A4               	clrf	(__pbssBANK0+4)& (0+127)
+   240  07F3  01A5               	clrf	(__pbssBANK0+5)& (0+127)
+   241  07F4  01A6               	clrf	(__pbssBANK0+6)& (0+127)
+   242  07F5  01A7               	clrf	(__pbssBANK0+7)& (0+127)
+   243  07F6  01A8               	clrf	(__pbssBANK0+8)& (0+127)
+   244  07F7  01A9               	clrf	(__pbssBANK0+9)& (0+127)
+   245  07F8  01AA               	clrf	(__pbssBANK0+10)& (0+127)
+   246  07F9  01AB               	clrf	(__pbssBANK0+11)& (0+127)
+   247  07FA  01AC               	clrf	(__pbssBANK0+12)& (0+127)
+   248  07FB  01AD               	clrf	(__pbssBANK0+13)& (0+127)
+   249  07FC                     end_of_initialization:	
+   250                           ;End of C runtime variable initialization code
+   251                           
+   252  07FC                     __end_of__initialization:	
+   253  07FC  0183               	clrf	3
+   254  07FD  120A  118A  2F17   	ljmp	_main	;jump to C main() function
+   255                           
+   256                           	psect	bssCOMMON
+   257  007A                     __pbssCOMMON:	
+   258  007A                     _set_second2:	
+   259  007A                     	ds	2
+   260  007C                     _set_second1:	
+   261  007C                     	ds	2
+   262                           
+   263                           	psect	bssBANK0
+   264  0020                     __pbssBANK0:	
+   265  0020                     _set_minute2:	
+   266  0020                     	ds	2
+   267  0022                     _set_minute1:	
+   268  0022                     	ds	2
+   269  0024                     _fourth_digit:	
+   270  0024                     	ds	2
+   271  0026                     _third_digit:	
+   272  0026                     	ds	2
+   273  0028                     _second_digit:	
+   274  0028                     	ds	2
+   275  002A                     _first_digit:	
+   276  002A                     	ds	2
+   277  002C                     _count:	
+   278  002C                     	ds	2
+   279                           
+   280                           	psect	cstackCOMMON
+   281  0070                     __pcstackCOMMON:	
+   282  0070                     ?_display_on_first_digit:	
+   283  0070                     ?_display_on_second_digit:	
+   284                           ; 1 bytes @ 0x0
    285                           
-   286                           ;minute-counter.c: 32:     PORTA = PORTB = PORTC = PORTD = PORTE = 0;
-   287  07AA  1283               	bcf	3,5	;RP0=0, select bank0
-   288  07AB  1303               	bcf	3,6	;RP1=0, select bank0
-   289  07AC  0189               	clrf	9	;volatile
-   290  07AD  0188               	clrf	8	;volatile
-   291  07AE  0187               	clrf	7	;volatile
-   292  07AF  0186               	clrf	6	;volatile
-   293  07B0  0185               	clrf	5	;volatile
+   286  0070                     ?_display_on_fourth_digit:	
+   287                           ; 1 bytes @ 0x0
+   288                           
+   289  0070                     ?_display_on_fifth_digit:	
+   290                           ; 1 bytes @ 0x0
+   291                           
+   292  0070                     ?_set_time_second2:	
+   293                           ; 1 bytes @ 0x0
    294                           
-   295                           ;minute-counter.c: 33:     TRISB = TRISC = TRISD = 0;
-   296  07B1  1683               	bsf	3,5	;RP0=1, select bank1
-   297  07B2  1303               	bcf	3,6	;RP1=0, select bank1
-   298  07B3  0188               	clrf	8	;volatile
-   299  07B4  0187               	clrf	7	;volatile
-   300  07B5  0186               	clrf	6	;volatile
-   301  07B6                     l638:	
-   302                           
-   303                           ;minute-counter.c: 35:         count++;
-   304  07B6  3001               	movlw	1
-   305  07B7  07F3               	addwf	_count,f
-   306  07B8  1803               	skipnc
-   307  07B9  0AF4               	incf	_count+1,f
-   308  07BA  3000               	movlw	0
-   309  07BB  07F4               	addwf	_count+1,f
-   310  07BC                     l640:	
-   311                           
-   312                           ;minute-counter.c: 36:         PORTD = SEGMENT_MAP[0];
-   313  07BC  3001               	movlw	low (_SEGMENT_MAP-__stringbase)
-   314  07BD  0084               	movwf	4
-   315  07BE  120A  118A  2003  120A  118A  	fcall	stringdir
-   316  07C3  1283               	bcf	3,5	;RP0=0, select bank0
-   317  07C4  0088               	movwf	8	;volatile
-   318  07C5                     l642:	
+   295  0070                     ?_set_time_second1:	
+   296                           ; 1 bytes @ 0x0
+   297                           
+   298  0070                     ?_set_time_minute2:	
+   299                           ; 1 bytes @ 0x0
+   300                           
+   301  0070                     ?_set_time_minute1:	
+   302                           ; 1 bytes @ 0x0
+   303                           
+   304  0070                     ?_main:	
+   305                           ; 1 bytes @ 0x0
+   306                           
+   307  0070                     display_on_first_digit@digit:	
+   308                           ; 1 bytes @ 0x0
+   309                           
+   310  0070                     display_on_second_digit@digit:	
+   311                           ; 2 bytes @ 0x0
+   312                           
+   313  0070                     display_on_fourth_digit@digit:	
+   314                           ; 2 bytes @ 0x0
+   315                           
+   316  0070                     display_on_fifth_digit@digit:	
+   317                           ; 2 bytes @ 0x0
+   318                           
    319                           
-   320                           ;minute-counter.c: 37:         PORTC = SEGMENT_MAP[count];
-   321  07C5  0873               	movf	_count,w
-   322  07C6  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
-   323  07C7  0084               	movwf	4
-   324  07C8  120A  118A  2003  120A  118A  	fcall	stringdir
-   325  07CD  0087               	movwf	7	;volatile
-   326  07CE                     l644:	
-   327                           
-   328                           ;minute-counter.c: 38:         _delay((unsigned long)((1000)*(20000000/4000.0)));
-   329  07CE  301A               	movlw	26
-   330  07CF  00F2               	movwf	??_main+2
-   331  07D0  305E               	movlw	94
-   332  07D1  00F1               	movwf	??_main+1
-   333  07D2  306E               	movlw	110
-   334  07D3  00F0               	movwf	??_main
-   335  07D4                     u17:	
-   336  07D4  0BF0               	decfsz	??_main,f
-   337  07D5  2FD4               	goto	u17
-   338  07D6  0BF1               	decfsz	??_main+1,f
-   339  07D7  2FD4               	goto	u17
-   340  07D8  0BF2               	decfsz	??_main+2,f
-   341  07D9  2FD4               	goto	u17
-   342  07DA  0000               	nop
-   343  07DB                     l646:	
+   320                           ; 2 bytes @ 0x0
+   321  0070                     	ds	2
+   322  0072                     ??_display_on_first_digit:	
+   323  0072                     ??_display_on_second_digit:	
+   324                           ; 1 bytes @ 0x2
+   325                           
+   326  0072                     ??_display_on_fourth_digit:	
+   327                           ; 1 bytes @ 0x2
+   328                           
+   329  0072                     ??_display_on_fifth_digit:	
+   330                           ; 1 bytes @ 0x2
+   331                           
+   332  0072                     ??_set_time_minute1:	
+   333                           ; 1 bytes @ 0x2
+   334                           
+   335                           
+   336                           ; 1 bytes @ 0x2
+   337  0072                     	ds	2
+   338  0074                     ??_set_time_second2:	
+   339  0074                     ??_set_time_second1:	
+   340                           ; 1 bytes @ 0x4
+   341                           
+   342  0074                     ??_set_time_minute2:	
+   343                           ; 1 bytes @ 0x4
    344                           
-   345                           ;minute-counter.c: 39:         PORTB = SEGMENT_MAP[count++];
-   346  07DB  0873               	movf	_count,w
-   347  07DC  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
-   348  07DD  0084               	movwf	4
-   349  07DE  120A  118A  2003  120A  118A  	fcall	stringdir
-   350  07E3  1283               	bcf	3,5	;RP0=0, select bank0
-   351  07E4  1303               	bcf	3,6	;RP1=0, select bank0
-   352  07E5  0086               	movwf	6	;volatile
-   353  07E6                     l648:	
-   354  07E6  3001               	movlw	1
-   355  07E7  07F3               	addwf	_count,f
-   356  07E8  1803               	skipnc
-   357  07E9  0AF4               	incf	_count+1,f
-   358  07EA  3000               	movlw	0
-   359  07EB  07F4               	addwf	_count+1,f
-   360  07EC  2FB6               	goto	l638
-   361  07ED  120A  118A  2800   	ljmp	start
-   362  07F0                     __end_of_main:	
-   363  007E                     btemp	set	126	;btemp
-   364  007E                     wtemp0	set	126
+   345                           
+   346                           ; 1 bytes @ 0x4
+   347  0074                     	ds	3
+   348  0077                     ??_main:	
+   349                           
+   350                           ; 1 bytes @ 0x7
+   351  0077                     	ds	3
+   352                           
+   353                           	psect	cstackBANK0
+   354  002E                     __pcstackBANK0:	
+   355  002E                     	ds	2
+   356  0030                     main@minute2:	
+   357                           
+   358                           ; 2 bytes @ 0x2
+   359  0030                     	ds	2
+   360  0032                     main@second1:	
+   361                           
+   362                           ; 2 bytes @ 0x4
+   363  0032                     	ds	2
+   364  0034                     main@second2:	
+   365                           
+   366                           ; 2 bytes @ 0x6
+   367  0034                     	ds	2
+   368                           
+   369                           	psect	maintext
+   370  0717                     __pmaintext:	
+   371 ;;
+   372 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   373 ;;
+   374 ;; *************** function _main *****************
+   375 ;; Defined at:
+   376 ;;		line 230 in file "minute-counter.c"
+   377 ;; Parameters:    Size  Location     Type
+   378 ;;		None
+   379 ;; Auto vars:     Size  Location     Type
+   380 ;;  second2         2    6[BANK0 ] int 
+   381 ;;  second1         2    4[BANK0 ] int 
+   382 ;;  minute2         2    2[BANK0 ] int 
+   383 ;;  minute1         2    0        int 
+   384 ;; Return value:  Size  Location     Type
+   385 ;;                  1    wreg      void 
+   386 ;; Registers used:
+   387 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   388 ;; Tracked objects:
+   389 ;;		On entry : B00/0
+   390 ;;		On exit  : 0/0
+   391 ;;		Unchanged: 0/0
+   392 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   393 ;;      Params:         0       0       0       0       0
+   394 ;;      Locals:         0       8       0       0       0
+   395 ;;      Temps:          3       0       0       0       0
+   396 ;;      Totals:         3       8       0       0       0
+   397 ;;Total ram usage:       11 bytes
+   398 ;; Hardware stack levels required when called:    3
+   399 ;; This function calls:
+   400 ;;		_display_on_fifth_digit
+   401 ;;		_display_on_first_digit
+   402 ;;		_display_on_fourth_digit
+   403 ;;		_display_on_second_digit
+   404 ;;		_set_time_minute1
+   405 ;;		_set_time_minute2
+   406 ;;		_set_time_second1
+   407 ;;		_set_time_second2
+   408 ;; This function is called by:
+   409 ;;		Startup code after reset
+   410 ;; This function uses a non-reentrant model
+   411 ;;
+   412                           
+   413                           
+   414                           ;psect for function _main
+   415  0717                     _main:	
+   416  0717                     l1092:	
+   417                           ;incstack = 0
+   418                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   419                           
+   420                           
+   421                           ;minute-counter.c: 246:     PORTA = PORTB = PORTC = PORTD = PORTE = 0;
+   422  0717  1283               	bcf	3,5	;RP0=0, select bank0
+   423  0718  1303               	bcf	3,6	;RP1=0, select bank0
+   424  0719  0189               	clrf	9	;volatile
+   425  071A  0188               	clrf	8	;volatile
+   426  071B  0187               	clrf	7	;volatile
+   427  071C  0186               	clrf	6	;volatile
+   428  071D  0185               	clrf	5	;volatile
+   429  071E                     l1094:	
+   430                           
+   431                           ;minute-counter.c: 247:     TRISB = 0B00110000;
+   432  071E  3030               	movlw	48
+   433  071F  1683               	bsf	3,5	;RP0=1, select bank1
+   434  0720  1303               	bcf	3,6	;RP1=0, select bank1
+   435  0721  0086               	movwf	6	;volatile
+   436  0722                     l1096:	
+   437                           
+   438                           ;minute-counter.c: 248:     TRISC = TRISD = 0;
+   439  0722  0188               	clrf	8	;volatile
+   440  0723  0187               	clrf	7	;volatile
+   441  0724                     l1098:	
+   442                           
+   443                           ;minute-counter.c: 249:     RB0 = RB1 = RB2 = RB3 = 1;
+   444  0724  1283               	bcf	3,5	;RP0=0, select bank0
+   445  0725  1303               	bcf	3,6	;RP1=0, select bank0
+   446  0726  1586               	bsf	6,3	;volatile
+   447  0727  1986               	btfsc	6,3	;volatile
+   448  0728  2F2A               	goto	u651
+   449  0729  2F2E               	goto	u650
+   450  072A                     u651:	
+   451  072A  1283               	bcf	3,5	;RP0=0, select bank0
+   452  072B  1303               	bcf	3,6	;RP1=0, select bank0
+   453  072C  1506               	bsf	6,2	;volatile
+   454  072D  2F31               	goto	u664
+   455  072E                     u650:	
+   456  072E  1283               	bcf	3,5	;RP0=0, select bank0
+   457  072F  1303               	bcf	3,6	;RP1=0, select bank0
+   458  0730  1106               	bcf	6,2	;volatile
+   459  0731                     u664:	
+   460  0731  1906               	btfsc	6,2	;volatile
+   461  0732  2F34               	goto	u661
+   462  0733  2F38               	goto	u660
+   463  0734                     u661:	
+   464  0734  1283               	bcf	3,5	;RP0=0, select bank0
+   465  0735  1303               	bcf	3,6	;RP1=0, select bank0
+   466  0736  1486               	bsf	6,1	;volatile
+   467  0737  2F3B               	goto	u674
+   468  0738                     u660:	
+   469  0738  1283               	bcf	3,5	;RP0=0, select bank0
+   470  0739  1303               	bcf	3,6	;RP1=0, select bank0
+   471  073A  1086               	bcf	6,1	;volatile
+   472  073B                     u674:	
+   473  073B  1886               	btfsc	6,1	;volatile
+   474  073C  2F3E               	goto	u671
+   475  073D  2F42               	goto	u670
+   476  073E                     u671:	
+   477  073E  1283               	bcf	3,5	;RP0=0, select bank0
+   478  073F  1303               	bcf	3,6	;RP1=0, select bank0
+   479  0740  1406               	bsf	6,0	;volatile
+   480  0741  2F45               	goto	u684
+   481  0742                     u670:	
+   482  0742  1283               	bcf	3,5	;RP0=0, select bank0
+   483  0743  1303               	bcf	3,6	;RP1=0, select bank0
+   484  0744  1006               	bcf	6,0	;volatile
+   485  0745                     u684:	
+   486  0745  3002               	movlw	2
+   487  0746  00B4               	movwf	main@second2
+   488  0747  3000               	movlw	0
+   489  0748  00B5               	movwf	main@second2+1
+   490  0749  0835               	movf	main@second2+1,w
+   491  074A  00B3               	movwf	main@second1+1
+   492  074B  0834               	movf	main@second2,w
+   493  074C  00B2               	movwf	main@second1
+   494  074D  0833               	movf	main@second1+1,w
+   495  074E  00B1               	movwf	main@minute2+1
+   496  074F  0832               	movf	main@second1,w
+   497  0750  00B0               	movwf	main@minute2
+   498  0751                     l1100:	
+   499                           
+   500                           ;minute-counter.c: 254:         if (RB5 == 1) {
+   501  0751  1283               	bcf	3,5	;RP0=0, select bank0
+   502  0752  1303               	bcf	3,6	;RP1=0, select bank0
+   503  0753  1E86               	btfss	6,5	;volatile
+   504  0754  2F56               	goto	u691
+   505  0755  2F57               	goto	u690
+   506  0756                     u691:	
+   507  0756  2FAF               	goto	l1118
+   508  0757                     u690:	
+   509  0757                     l1102:	
+   510                           
+   511                           ;minute-counter.c: 255:             _delay((unsigned long)((10)*(20000000/4000.0)));
+   512  0757  3041               	movlw	65
+   513  0758  00F8               	movwf	??_main+1
+   514  0759  30EE               	movlw	238
+   515  075A  00F7               	movwf	??_main
+   516  075B                     u717:	
+   517  075B  0BF7               	decfsz	??_main,f
+   518  075C  2F5B               	goto	u717
+   519  075D  0BF8               	decfsz	??_main+1,f
+   520  075E  2F5B               	goto	u717
+   521  075F  0000               	nop
+   522                           
+   523                           ;minute-counter.c: 256:             while (RB5 == 1){
+   524  0760  2FA9               	goto	l1116
+   525  0761                     l1104:	
+   526                           
+   527                           ;minute-counter.c: 257:                 set_time_second2();
+   528  0761  120A  118A  2604  120A  118A  	fcall	_set_time_second2
+   529  0766                     l1106:	
+   530                           
+   531                           ;minute-counter.c: 258:                 _delay((unsigned long)((1000)*(20000000/4000.0))
+      +                          );
+   532  0766  301A               	movlw	26
+   533  0767  00F9               	movwf	??_main+2
+   534  0768  305E               	movlw	94
+   535  0769  00F8               	movwf	??_main+1
+   536  076A  306E               	movlw	110
+   537  076B  00F7               	movwf	??_main
+   538  076C                     u727:	
+   539  076C  0BF7               	decfsz	??_main,f
+   540  076D  2F6C               	goto	u727
+   541  076E  0BF8               	decfsz	??_main+1,f
+   542  076F  2F6C               	goto	u727
+   543  0770  0BF9               	decfsz	??_main+2,f
+   544  0771  2F6C               	goto	u727
+   545  0772  0000               	nop
+   546  0773                     l1108:	
+   547                           
+   548                           ;minute-counter.c: 259:                 set_time_second1();
+   549  0773  120A  118A  25AB  120A  118A  	fcall	_set_time_second1
+   550                           
+   551                           ;minute-counter.c: 260:                 _delay((unsigned long)((1000)*(20000000/4000.0))
+      +                          );
+   552  0778  301A               	movlw	26
+   553  0779  00F9               	movwf	??_main+2
+   554  077A  305E               	movlw	94
+   555  077B  00F8               	movwf	??_main+1
+   556  077C  306E               	movlw	110
+   557  077D  00F7               	movwf	??_main
+   558  077E                     u737:	
+   559  077E  0BF7               	decfsz	??_main,f
+   560  077F  2F7E               	goto	u737
+   561  0780  0BF8               	decfsz	??_main+1,f
+   562  0781  2F7E               	goto	u737
+   563  0782  0BF9               	decfsz	??_main+2,f
+   564  0783  2F7E               	goto	u737
+   565  0784  0000               	nop
+   566  0785                     l1110:	
+   567                           
+   568                           ;minute-counter.c: 261:                 set_time_minute2();
+   569  0785  120A  118A  26BA  120A  118A  	fcall	_set_time_minute2
+   570  078A                     l1112:	
+   571                           
+   572                           ;minute-counter.c: 262:                 _delay((unsigned long)((1000)*(20000000/4000.0))
+      +                          );
+   573  078A  301A               	movlw	26
+   574  078B  00F9               	movwf	??_main+2
+   575  078C  305E               	movlw	94
+   576  078D  00F8               	movwf	??_main+1
+   577  078E  306E               	movlw	110
+   578  078F  00F7               	movwf	??_main
+   579  0790                     u747:	
+   580  0790  0BF7               	decfsz	??_main,f
+   581  0791  2F90               	goto	u747
+   582  0792  0BF8               	decfsz	??_main+1,f
+   583  0793  2F90               	goto	u747
+   584  0794  0BF9               	decfsz	??_main+2,f
+   585  0795  2F90               	goto	u747
+   586  0796  0000               	nop
+   587                           
+   588                           ;minute-counter.c: 263:                 set_time_minute1();
+   589  0797  120A  118A  265D  120A  118A  	fcall	_set_time_minute1
+   590  079C                     l1114:	
+   591                           
+   592                           ;minute-counter.c: 264:                 _delay((unsigned long)((1000)*(20000000/4000.0))
+      +                          );
+   593  079C  301A               	movlw	26
+   594  079D  00F9               	movwf	??_main+2
+   595  079E  305E               	movlw	94
+   596  079F  00F8               	movwf	??_main+1
+   597  07A0  306E               	movlw	110
+   598  07A1  00F7               	movwf	??_main
+   599  07A2                     u757:	
+   600  07A2  0BF7               	decfsz	??_main,f
+   601  07A3  2FA2               	goto	u757
+   602  07A4  0BF8               	decfsz	??_main+1,f
+   603  07A5  2FA2               	goto	u757
+   604  07A6  0BF9               	decfsz	??_main+2,f
+   605  07A7  2FA2               	goto	u757
+   606  07A8  0000               	nop
+   607  07A9                     l1116:	
+   608                           
+   609                           ;minute-counter.c: 256:             while (RB5 == 1){
+   610  07A9  1283               	bcf	3,5	;RP0=0, select bank0
+   611  07AA  1303               	bcf	3,6	;RP1=0, select bank0
+   612  07AB  1A86               	btfsc	6,5	;volatile
+   613  07AC  2FAE               	goto	u701
+   614  07AD  2FAF               	goto	u700
+   615  07AE                     u701:	
+   616  07AE  2F61               	goto	l1104
+   617  07AF                     u700:	
+   618  07AF                     l1118:	
+   619                           
+   620                           ;minute-counter.c: 271:         _delay((unsigned long)((1000)*(20000000/4000.0)));
+   621  07AF  301A               	movlw	26
+   622  07B0  00F9               	movwf	??_main+2
+   623  07B1  305E               	movlw	94
+   624  07B2  00F8               	movwf	??_main+1
+   625  07B3  306E               	movlw	110
+   626  07B4  00F7               	movwf	??_main
+   627  07B5                     u767:	
+   628  07B5  0BF7               	decfsz	??_main,f
+   629  07B6  2FB5               	goto	u767
+   630  07B7  0BF8               	decfsz	??_main+1,f
+   631  07B8  2FB5               	goto	u767
+   632  07B9  0BF9               	decfsz	??_main+2,f
+   633  07BA  2FB5               	goto	u767
+   634  07BB  0000               	nop
+   635  07BC                     l1120:	
+   636                           
+   637                           ;minute-counter.c: 272:         display_on_first_digit(set_minute1);
+   638  07BC  1283               	bcf	3,5	;RP0=0, select bank0
+   639  07BD  1303               	bcf	3,6	;RP1=0, select bank0
+   640  07BE  0823               	movf	_set_minute1+1,w
+   641  07BF  00F1               	movwf	display_on_first_digit@digit+1
+   642  07C0  0822               	movf	_set_minute1,w
+   643  07C1  00F0               	movwf	display_on_first_digit@digit
+   644  07C2  120A  118A  2551  120A  118A  	fcall	_display_on_first_digit
+   645  07C7                     l1122:	
+   646                           
+   647                           ;minute-counter.c: 273:         display_on_second_digit(set_minute2);
+   648  07C7  1283               	bcf	3,5	;RP0=0, select bank0
+   649  07C8  1303               	bcf	3,6	;RP1=0, select bank0
+   650  07C9  0821               	movf	_set_minute2+1,w
+   651  07CA  00F1               	movwf	display_on_second_digit@digit+1
+   652  07CB  0820               	movf	_set_minute2,w
+   653  07CC  00F0               	movwf	display_on_second_digit@digit
+   654  07CD  120A  118A  255D  120A  118A  	fcall	_display_on_second_digit
+   655  07D2                     l1124:	
+   656                           
+   657                           ;minute-counter.c: 274:         display_on_fourth_digit(set_second1);
+   658  07D2  087D               	movf	_set_second1+1,w
+   659  07D3  00F1               	movwf	display_on_fourth_digit@digit+1
+   660  07D4  087C               	movf	_set_second1,w
+   661  07D5  00F0               	movwf	display_on_fourth_digit@digit
+   662  07D6  120A  118A  2577  120A  118A  	fcall	_display_on_fourth_digit
+   663  07DB                     l1126:	
+   664                           
+   665                           ;minute-counter.c: 275:         display_on_fifth_digit(set_second2);
+   666  07DB  087B               	movf	_set_second2+1,w
+   667  07DC  00F1               	movwf	display_on_fifth_digit@digit+1
+   668  07DD  087A               	movf	_set_second2,w
+   669  07DE  00F0               	movwf	display_on_fifth_digit@digit
+   670  07DF  120A  118A  2591  120A  118A  	fcall	_display_on_fifth_digit
+   671  07E4  2F51               	goto	l1100
+   672  07E5  120A  118A  2800   	ljmp	start
+   673  07E8                     __end_of_main:	
+   674                           
+   675                           	psect	text1
+   676  0604                     __ptext1:	
+   677 ;; *************** function _set_time_second2 *****************
+   678 ;; Defined at:
+   679 ;;		line 149 in file "minute-counter.c"
+   680 ;; Parameters:    Size  Location     Type
+   681 ;;		None
+   682 ;; Auto vars:     Size  Location     Type
+   683 ;;		None
+   684 ;; Return value:  Size  Location     Type
+   685 ;;                  1    wreg      void 
+   686 ;; Registers used:
+   687 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   688 ;; Tracked objects:
+   689 ;;		On entry : 0/0
+   690 ;;		On exit  : 0/0
+   691 ;;		Unchanged: 0/0
+   692 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   693 ;;      Params:         0       0       0       0       0
+   694 ;;      Locals:         0       0       0       0       0
+   695 ;;      Temps:          3       0       0       0       0
+   696 ;;      Totals:         3       0       0       0       0
+   697 ;;Total ram usage:        3 bytes
+   698 ;; Hardware stack levels used:    1
+   699 ;; Hardware stack levels required when called:    2
+   700 ;; This function calls:
+   701 ;;		_display_on_fifth_digit
+   702 ;; This function is called by:
+   703 ;;		_main
+   704 ;; This function uses a non-reentrant model
+   705 ;;
+   706                           
+   707                           
+   708                           ;psect for function _set_time_second2
+   709  0604                     _set_time_second2:	
+   710  0604                     l966:	
+   711                           ;incstack = 0
+   712                           ; Regs used in _set_time_second2: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   713                           
+   714                           
+   715                           ;minute-counter.c: 150:     if (RB5 == 1){
+   716  0604  1283               	bcf	3,5	;RP0=0, select bank0
+   717  0605  1303               	bcf	3,6	;RP1=0, select bank0
+   718  0606  1E86               	btfss	6,5	;volatile
+   719  0607  2E09               	goto	u361
+   720  0608  2E0A               	goto	u360
+   721  0609                     u361:	
+   722  0609  2E5C               	goto	l96
+   723  060A                     u360:	
+   724  060A                     l968:	
+   725                           
+   726                           ;minute-counter.c: 151:             _delay((unsigned long)((10)*(20000000/4000.0)));
+   727  060A  3041               	movlw	65
+   728  060B  00F5               	movwf	??_set_time_second2+1
+   729  060C  30EE               	movlw	238
+   730  060D  00F4               	movwf	??_set_time_second2
+   731  060E                     u777:	
+   732  060E  0BF4               	decfsz	??_set_time_second2,f
+   733  060F  2E0E               	goto	u777
+   734  0610  0BF5               	decfsz	??_set_time_second2+1,f
+   735  0611  2E0E               	goto	u777
+   736  0612  0000               	nop
+   737                           
+   738                           ;minute-counter.c: 152:             while (RB5 == 1) {
+   739  0613  2E56               	goto	l88
+   740  0614                     l89:	
+   741                           
+   742                           ;minute-counter.c: 153:                 if (RB4 == 1){
+   743  0614  1E06               	btfss	6,4	;volatile
+   744  0615  2E17               	goto	u371
+   745  0616  2E18               	goto	u370
+   746  0617                     u371:	
+   747  0617  2E56               	goto	l88
+   748  0618                     u370:	
+   749  0618                     l970:	
+   750                           
+   751                           ;minute-counter.c: 154:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+   752  0618  3041               	movlw	65
+   753  0619  00F5               	movwf	??_set_time_second2+1
+   754  061A  30EE               	movlw	238
+   755  061B  00F4               	movwf	??_set_time_second2
+   756  061C                     u787:	
+   757  061C  0BF4               	decfsz	??_set_time_second2,f
+   758  061D  2E1C               	goto	u787
+   759  061E  0BF5               	decfsz	??_set_time_second2+1,f
+   760  061F  2E1C               	goto	u787
+   761  0620  0000               	nop
+   762                           
+   763                           ;minute-counter.c: 155:                 while (RB4 == 1){
+   764  0621  2E50               	goto	l982
+   765  0622                     l972:	
+   766                           
+   767                           ;minute-counter.c: 156:                     if (set_second2 > 9) {
+   768  0622  087B               	movf	_set_second2+1,w
+   769  0623  3A80               	xorlw	128
+   770  0624  00FF               	movwf	btemp+1
+   771  0625  3080               	movlw	128
+   772  0626  027F               	subwf	btemp+1,w
+   773  0627  1D03               	skipz
+   774  0628  2E2B               	goto	u385
+   775  0629  300A               	movlw	10
+   776  062A  027A               	subwf	_set_second2,w
+   777  062B                     u385:	
+   778  062B  1C03               	skipc
+   779  062C  2E2E               	goto	u381
+   780  062D  2E2F               	goto	u380
+   781  062E                     u381:	
+   782  062E  2E34               	goto	l976
+   783  062F                     u380:	
+   784  062F                     l974:	
+   785                           
+   786                           ;minute-counter.c: 157:                             set_second2 = 9;
+   787  062F  3009               	movlw	9
+   788  0630  00FA               	movwf	_set_second2
+   789  0631  3000               	movlw	0
+   790  0632  00FB               	movwf	_set_second2+1
+   791                           
+   792                           ;minute-counter.c: 158:                             break;
+   793  0633  2E56               	goto	l88
+   794  0634                     l976:	
+   795                           
+   796                           ;minute-counter.c: 160:                     set_second2++;
+   797  0634  3001               	movlw	1
+   798  0635  07FA               	addwf	_set_second2,f
+   799  0636  1803               	skipnc
+   800  0637  0AFB               	incf	_set_second2+1,f
+   801  0638  3000               	movlw	0
+   802  0639  07FB               	addwf	_set_second2+1,f
+   803  063A                     l978:	
+   804                           
+   805                           ;minute-counter.c: 161:                     display_on_fifth_digit(set_second2);
+   806  063A  087B               	movf	_set_second2+1,w
+   807  063B  00F1               	movwf	display_on_fifth_digit@digit+1
+   808  063C  087A               	movf	_set_second2,w
+   809  063D  00F0               	movwf	display_on_fifth_digit@digit
+   810  063E  120A  118A  2591  120A  118A  	fcall	_display_on_fifth_digit
+   811  0643                     l980:	
+   812                           
+   813                           ;minute-counter.c: 162:                     _delay((unsigned long)((1000)*(20000000/4000
+      +                          .0)));
+   814  0643  301A               	movlw	26
+   815  0644  00F6               	movwf	??_set_time_second2+2
+   816  0645  305E               	movlw	94
+   817  0646  00F5               	movwf	??_set_time_second2+1
+   818  0647  306E               	movlw	110
+   819  0648  00F4               	movwf	??_set_time_second2
+   820  0649                     u797:	
+   821  0649  0BF4               	decfsz	??_set_time_second2,f
+   822  064A  2E49               	goto	u797
+   823  064B  0BF5               	decfsz	??_set_time_second2+1,f
+   824  064C  2E49               	goto	u797
+   825  064D  0BF6               	decfsz	??_set_time_second2+2,f
+   826  064E  2E49               	goto	u797
+   827  064F  0000               	nop
+   828  0650                     l982:	
+   829                           
+   830                           ;minute-counter.c: 155:                 while (RB4 == 1){
+   831  0650  1283               	bcf	3,5	;RP0=0, select bank0
+   832  0651  1303               	bcf	3,6	;RP1=0, select bank0
+   833  0652  1A06               	btfsc	6,4	;volatile
+   834  0653  2E55               	goto	u391
+   835  0654  2E56               	goto	u390
+   836  0655                     u391:	
+   837  0655  2E22               	goto	l972
+   838  0656                     u390:	
+   839  0656                     l88:	
+   840                           ;minute-counter.c: 165:             }
+   841                           
+   842                           
+   843                           ;minute-counter.c: 152:             while (RB5 == 1) {
+   844  0656  1283               	bcf	3,5	;RP0=0, select bank0
+   845  0657  1303               	bcf	3,6	;RP1=0, select bank0
+   846  0658  1A86               	btfsc	6,5	;volatile
+   847  0659  2E5B               	goto	u401
+   848  065A  2E5C               	goto	u400
+   849  065B                     u401:	
+   850  065B  2E14               	goto	l89
+   851  065C                     u400:	
+   852  065C                     l96:	
+   853  065C  0008               	return
+   854  065D                     __end_of_set_time_second2:	
+   855                           
+   856                           	psect	text2
+   857  0591                     __ptext2:	
+   858 ;; *************** function _display_on_fifth_digit *****************
+   859 ;; Defined at:
+   860 ;;		line 80 in file "minute-counter.c"
+   861 ;; Parameters:    Size  Location     Type
+   862 ;;  digit           2    0[COMMON] int 
+   863 ;; Auto vars:     Size  Location     Type
+   864 ;;		None
+   865 ;; Return value:  Size  Location     Type
+   866 ;;                  1    wreg      void 
+   867 ;; Registers used:
+   868 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+   869 ;; Tracked objects:
+   870 ;;		On entry : 0/0
+   871 ;;		On exit  : 0/0
+   872 ;;		Unchanged: 0/0
+   873 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   874 ;;      Params:         2       0       0       0       0
+   875 ;;      Locals:         0       0       0       0       0
+   876 ;;      Temps:          2       0       0       0       0
+   877 ;;      Totals:         4       0       0       0       0
+   878 ;;Total ram usage:        4 bytes
+   879 ;; Hardware stack levels used:    2
+   880 ;; This function calls:
+   881 ;;		Nothing
+   882 ;; This function is called by:
+   883 ;;		_set_time_second2
+   884 ;;		_main
+   885 ;;		_count_to_minutes
+   886 ;;		_countdown_to_second
+   887 ;; This function uses a non-reentrant model
+   888 ;;
+   889                           
+   890                           
+   891                           ;psect for function _display_on_fifth_digit
+   892  0591                     _display_on_fifth_digit:	
+   893  0591                     l950:	
+   894                           ;incstack = 0
+   895                           ; Regs used in _display_on_fifth_digit: [wreg-fsr0h+status,2+status,0+pclath]
+   896                           
+   897                           
+   898                           ;minute-counter.c: 81:     PORTC = SEGMENT_MAP[digit];
+   899  0591  0870               	movf	display_on_fifth_digit@digit,w
+   900  0592  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
+   901  0593  0084               	movwf	4
+   902  0594  120A  118A  2003  120A  118A  	fcall	stringdir
+   903  0599  1283               	bcf	3,5	;RP0=0, select bank0
+   904  059A  1303               	bcf	3,6	;RP1=0, select bank0
+   905  059B  0087               	movwf	7	;volatile
+   906  059C                     l952:	
+   907                           
+   908                           ;minute-counter.c: 82:     PORTB = 0B00000111;
+   909  059C  3007               	movlw	7
+   910  059D  0086               	movwf	6	;volatile
+   911  059E                     l954:	
+   912                           
+   913                           ;minute-counter.c: 83:     _delay((unsigned long)((10)*(20000000/4000.0)));
+   914  059E  3041               	movlw	65
+   915  059F  00F3               	movwf	??_display_on_fifth_digit+1
+   916  05A0  30EE               	movlw	238
+   917  05A1  00F2               	movwf	??_display_on_fifth_digit
+   918  05A2                     u807:	
+   919  05A2  0BF2               	decfsz	??_display_on_fifth_digit,f
+   920  05A3  2DA2               	goto	u807
+   921  05A4  0BF3               	decfsz	??_display_on_fifth_digit+1,f
+   922  05A5  2DA2               	goto	u807
+   923  05A6  0000               	nop
+   924  05A7                     l956:	
+   925                           
+   926                           ;minute-counter.c: 84:     RB3 = 1;
+   927  05A7  1283               	bcf	3,5	;RP0=0, select bank0
+   928  05A8  1303               	bcf	3,6	;RP1=0, select bank0
+   929  05A9  1586               	bsf	6,3	;volatile
+   930  05AA                     l65:	
+   931  05AA  0008               	return
+   932  05AB                     __end_of_display_on_fifth_digit:	
+   933                           
+   934                           	psect	text3
+   935  05AB                     __ptext3:	
+   936 ;; *************** function _set_time_second1 *****************
+   937 ;; Defined at:
+   938 ;;		line 169 in file "minute-counter.c"
+   939 ;; Parameters:    Size  Location     Type
+   940 ;;		None
+   941 ;; Auto vars:     Size  Location     Type
+   942 ;;		None
+   943 ;; Return value:  Size  Location     Type
+   944 ;;                  1    wreg      void 
+   945 ;; Registers used:
+   946 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   947 ;; Tracked objects:
+   948 ;;		On entry : 0/0
+   949 ;;		On exit  : 0/0
+   950 ;;		Unchanged: 0/0
+   951 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   952 ;;      Params:         0       0       0       0       0
+   953 ;;      Locals:         0       0       0       0       0
+   954 ;;      Temps:          3       0       0       0       0
+   955 ;;      Totals:         3       0       0       0       0
+   956 ;;Total ram usage:        3 bytes
+   957 ;; Hardware stack levels used:    1
+   958 ;; Hardware stack levels required when called:    2
+   959 ;; This function calls:
+   960 ;;		_display_on_fourth_digit
+   961 ;; This function is called by:
+   962 ;;		_main
+   963 ;; This function uses a non-reentrant model
+   964 ;;
+   965                           
+   966                           
+   967                           ;psect for function _set_time_second1
+   968  05AB                     _set_time_second1:	
+   969  05AB                     l984:	
+   970                           ;incstack = 0
+   971                           ; Regs used in _set_time_second1: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   972                           
+   973                           
+   974                           ;minute-counter.c: 170:     if (RB5 == 1){
+   975  05AB  1283               	bcf	3,5	;RP0=0, select bank0
+   976  05AC  1303               	bcf	3,6	;RP1=0, select bank0
+   977  05AD  1E86               	btfss	6,5	;volatile
+   978  05AE  2DB0               	goto	u411
+   979  05AF  2DB1               	goto	u410
+   980  05B0                     u411:	
+   981  05B0  2E03               	goto	l108
+   982  05B1                     u410:	
+   983  05B1                     l986:	
+   984                           
+   985                           ;minute-counter.c: 171:             _delay((unsigned long)((10)*(20000000/4000.0)));
+   986  05B1  3041               	movlw	65
+   987  05B2  00F5               	movwf	??_set_time_second1+1
+   988  05B3  30EE               	movlw	238
+   989  05B4  00F4               	movwf	??_set_time_second1
+   990  05B5                     u817:	
+   991  05B5  0BF4               	decfsz	??_set_time_second1,f
+   992  05B6  2DB5               	goto	u817
+   993  05B7  0BF5               	decfsz	??_set_time_second1+1,f
+   994  05B8  2DB5               	goto	u817
+   995  05B9  0000               	nop
+   996                           
+   997                           ;minute-counter.c: 172:             while (RB5 == 1) {
+   998  05BA  2DFD               	goto	l100
+   999  05BB                     l101:	
+  1000                           
+  1001                           ;minute-counter.c: 173:                 if (RB4 == 1){
+  1002  05BB  1E06               	btfss	6,4	;volatile
+  1003  05BC  2DBE               	goto	u421
+  1004  05BD  2DBF               	goto	u420
+  1005  05BE                     u421:	
+  1006  05BE  2DFD               	goto	l100
+  1007  05BF                     u420:	
+  1008  05BF                     l988:	
+  1009                           
+  1010                           ;minute-counter.c: 174:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+  1011  05BF  3041               	movlw	65
+  1012  05C0  00F5               	movwf	??_set_time_second1+1
+  1013  05C1  30EE               	movlw	238
+  1014  05C2  00F4               	movwf	??_set_time_second1
+  1015  05C3                     u827:	
+  1016  05C3  0BF4               	decfsz	??_set_time_second1,f
+  1017  05C4  2DC3               	goto	u827
+  1018  05C5  0BF5               	decfsz	??_set_time_second1+1,f
+  1019  05C6  2DC3               	goto	u827
+  1020  05C7  0000               	nop
+  1021                           
+  1022                           ;minute-counter.c: 175:                 while (RB4 == 1){
+  1023  05C8  2DF7               	goto	l1000
+  1024  05C9                     l990:	
+  1025                           
+  1026                           ;minute-counter.c: 176:                     if (set_second1 > 9) {
+  1027  05C9  087D               	movf	_set_second1+1,w
+  1028  05CA  3A80               	xorlw	128
+  1029  05CB  00FF               	movwf	btemp+1
+  1030  05CC  3080               	movlw	128
+  1031  05CD  027F               	subwf	btemp+1,w
+  1032  05CE  1D03               	skipz
+  1033  05CF  2DD2               	goto	u435
+  1034  05D0  300A               	movlw	10
+  1035  05D1  027C               	subwf	_set_second1,w
+  1036  05D2                     u435:	
+  1037  05D2  1C03               	skipc
+  1038  05D3  2DD5               	goto	u431
+  1039  05D4  2DD6               	goto	u430
+  1040  05D5                     u431:	
+  1041  05D5  2DDB               	goto	l994
+  1042  05D6                     u430:	
+  1043  05D6                     l992:	
+  1044                           
+  1045                           ;minute-counter.c: 177:                             set_second1 = 9;
+  1046  05D6  3009               	movlw	9
+  1047  05D7  00FC               	movwf	_set_second1
+  1048  05D8  3000               	movlw	0
+  1049  05D9  00FD               	movwf	_set_second1+1
+  1050                           
+  1051                           ;minute-counter.c: 178:                             break;
+  1052  05DA  2DFD               	goto	l100
+  1053  05DB                     l994:	
+  1054                           
+  1055                           ;minute-counter.c: 180:                     set_second1++;
+  1056  05DB  3001               	movlw	1
+  1057  05DC  07FC               	addwf	_set_second1,f
+  1058  05DD  1803               	skipnc
+  1059  05DE  0AFD               	incf	_set_second1+1,f
+  1060  05DF  3000               	movlw	0
+  1061  05E0  07FD               	addwf	_set_second1+1,f
+  1062  05E1                     l996:	
+  1063                           
+  1064                           ;minute-counter.c: 181:                     display_on_fourth_digit(set_second1);
+  1065  05E1  087D               	movf	_set_second1+1,w
+  1066  05E2  00F1               	movwf	display_on_fourth_digit@digit+1
+  1067  05E3  087C               	movf	_set_second1,w
+  1068  05E4  00F0               	movwf	display_on_fourth_digit@digit
+  1069  05E5  120A  118A  2577  120A  118A  	fcall	_display_on_fourth_digit
+  1070  05EA                     l998:	
+  1071                           
+  1072                           ;minute-counter.c: 182:                     _delay((unsigned long)((1000)*(20000000/4000
+      +                          .0)));
+  1073  05EA  301A               	movlw	26
+  1074  05EB  00F6               	movwf	??_set_time_second1+2
+  1075  05EC  305E               	movlw	94
+  1076  05ED  00F5               	movwf	??_set_time_second1+1
+  1077  05EE  306E               	movlw	110
+  1078  05EF  00F4               	movwf	??_set_time_second1
+  1079  05F0                     u837:	
+  1080  05F0  0BF4               	decfsz	??_set_time_second1,f
+  1081  05F1  2DF0               	goto	u837
+  1082  05F2  0BF5               	decfsz	??_set_time_second1+1,f
+  1083  05F3  2DF0               	goto	u837
+  1084  05F4  0BF6               	decfsz	??_set_time_second1+2,f
+  1085  05F5  2DF0               	goto	u837
+  1086  05F6  0000               	nop
+  1087  05F7                     l1000:	
+  1088                           
+  1089                           ;minute-counter.c: 175:                 while (RB4 == 1){
+  1090  05F7  1283               	bcf	3,5	;RP0=0, select bank0
+  1091  05F8  1303               	bcf	3,6	;RP1=0, select bank0
+  1092  05F9  1A06               	btfsc	6,4	;volatile
+  1093  05FA  2DFC               	goto	u441
+  1094  05FB  2DFD               	goto	u440
+  1095  05FC                     u441:	
+  1096  05FC  2DC9               	goto	l990
+  1097  05FD                     u440:	
+  1098  05FD                     l100:	
+  1099                           ;minute-counter.c: 185:             }
+  1100                           
+  1101                           
+  1102                           ;minute-counter.c: 172:             while (RB5 == 1) {
+  1103  05FD  1283               	bcf	3,5	;RP0=0, select bank0
+  1104  05FE  1303               	bcf	3,6	;RP1=0, select bank0
+  1105  05FF  1A86               	btfsc	6,5	;volatile
+  1106  0600  2E02               	goto	u451
+  1107  0601  2E03               	goto	u450
+  1108  0602                     u451:	
+  1109  0602  2DBB               	goto	l101
+  1110  0603                     u450:	
+  1111  0603                     l108:	
+  1112  0603  0008               	return
+  1113  0604                     __end_of_set_time_second1:	
+  1114                           
+  1115                           	psect	text4
+  1116  0577                     __ptext4:	
+  1117 ;; *************** function _display_on_fourth_digit *****************
+  1118 ;; Defined at:
+  1119 ;;		line 72 in file "minute-counter.c"
+  1120 ;; Parameters:    Size  Location     Type
+  1121 ;;  digit           2    0[COMMON] int 
+  1122 ;; Auto vars:     Size  Location     Type
+  1123 ;;		None
+  1124 ;; Return value:  Size  Location     Type
+  1125 ;;                  1    wreg      void 
+  1126 ;; Registers used:
+  1127 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1128 ;; Tracked objects:
+  1129 ;;		On entry : 0/0
+  1130 ;;		On exit  : 0/0
+  1131 ;;		Unchanged: 0/0
+  1132 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1133 ;;      Params:         2       0       0       0       0
+  1134 ;;      Locals:         0       0       0       0       0
+  1135 ;;      Temps:          2       0       0       0       0
+  1136 ;;      Totals:         4       0       0       0       0
+  1137 ;;Total ram usage:        4 bytes
+  1138 ;; Hardware stack levels used:    2
+  1139 ;; This function calls:
+  1140 ;;		Nothing
+  1141 ;; This function is called by:
+  1142 ;;		_set_time_second1
+  1143 ;;		_main
+  1144 ;;		_count_to_minutes
+  1145 ;;		_countdown_to_second
+  1146 ;; This function uses a non-reentrant model
+  1147 ;;
+  1148                           
+  1149                           
+  1150                           ;psect for function _display_on_fourth_digit
+  1151  0577                     _display_on_fourth_digit:	
+  1152  0577                     l942:	
+  1153                           ;incstack = 0
+  1154                           ; Regs used in _display_on_fourth_digit: [wreg-fsr0h+status,2+status,0+pclath]
+  1155                           
+  1156                           
+  1157                           ;minute-counter.c: 73:     PORTC = SEGMENT_MAP[digit];
+  1158  0577  0870               	movf	display_on_fourth_digit@digit,w
+  1159  0578  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
+  1160  0579  0084               	movwf	4
+  1161  057A  120A  118A  2003  120A  118A  	fcall	stringdir
+  1162  057F  1283               	bcf	3,5	;RP0=0, select bank0
+  1163  0580  1303               	bcf	3,6	;RP1=0, select bank0
+  1164  0581  0087               	movwf	7	;volatile
+  1165  0582                     l944:	
+  1166                           
+  1167                           ;minute-counter.c: 74:     PORTB = 0B00001011;
+  1168  0582  300B               	movlw	11
+  1169  0583  0086               	movwf	6	;volatile
+  1170  0584                     l946:	
+  1171                           
+  1172                           ;minute-counter.c: 75:     _delay((unsigned long)((10)*(20000000/4000.0)));
+  1173  0584  3041               	movlw	65
+  1174  0585  00F3               	movwf	??_display_on_fourth_digit+1
+  1175  0586  30EE               	movlw	238
+  1176  0587  00F2               	movwf	??_display_on_fourth_digit
+  1177  0588                     u847:	
+  1178  0588  0BF2               	decfsz	??_display_on_fourth_digit,f
+  1179  0589  2D88               	goto	u847
+  1180  058A  0BF3               	decfsz	??_display_on_fourth_digit+1,f
+  1181  058B  2D88               	goto	u847
+  1182  058C  0000               	nop
+  1183  058D                     l948:	
+  1184                           
+  1185                           ;minute-counter.c: 76:     RB2 = 1;
+  1186  058D  1283               	bcf	3,5	;RP0=0, select bank0
+  1187  058E  1303               	bcf	3,6	;RP1=0, select bank0
+  1188  058F  1506               	bsf	6,2	;volatile
+  1189  0590                     l62:	
+  1190  0590  0008               	return
+  1191  0591                     __end_of_display_on_fourth_digit:	
+  1192                           
+  1193                           	psect	text5
+  1194  06BA                     __ptext5:	
+  1195 ;; *************** function _set_time_minute2 *****************
+  1196 ;; Defined at:
+  1197 ;;		line 189 in file "minute-counter.c"
+  1198 ;; Parameters:    Size  Location     Type
+  1199 ;;		None
+  1200 ;; Auto vars:     Size  Location     Type
+  1201 ;;		None
+  1202 ;; Return value:  Size  Location     Type
+  1203 ;;                  1    wreg      void 
+  1204 ;; Registers used:
+  1205 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1206 ;; Tracked objects:
+  1207 ;;		On entry : 0/0
+  1208 ;;		On exit  : 0/0
+  1209 ;;		Unchanged: 0/0
+  1210 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1211 ;;      Params:         0       0       0       0       0
+  1212 ;;      Locals:         0       0       0       0       0
+  1213 ;;      Temps:          3       0       0       0       0
+  1214 ;;      Totals:         3       0       0       0       0
+  1215 ;;Total ram usage:        3 bytes
+  1216 ;; Hardware stack levels used:    1
+  1217 ;; Hardware stack levels required when called:    2
+  1218 ;; This function calls:
+  1219 ;;		_display_on_second_digit
+  1220 ;; This function is called by:
+  1221 ;;		_main
+  1222 ;; This function uses a non-reentrant model
+  1223 ;;
+  1224                           
+  1225                           
+  1226                           ;psect for function _set_time_minute2
+  1227  06BA                     _set_time_minute2:	
+  1228  06BA                     l1002:	
+  1229                           ;incstack = 0
+  1230                           ; Regs used in _set_time_minute2: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1231                           
+  1232                           
+  1233                           ;minute-counter.c: 190:     if (RB5 == 1){
+  1234  06BA  1283               	bcf	3,5	;RP0=0, select bank0
+  1235  06BB  1303               	bcf	3,6	;RP1=0, select bank0
+  1236  06BC  1E86               	btfss	6,5	;volatile
+  1237  06BD  2EBF               	goto	u461
+  1238  06BE  2EC0               	goto	u460
+  1239  06BF                     u461:	
+  1240  06BF  2F16               	goto	l120
+  1241  06C0                     u460:	
+  1242  06C0                     l1004:	
+  1243                           
+  1244                           ;minute-counter.c: 191:             _delay((unsigned long)((10)*(20000000/4000.0)));
+  1245  06C0  3041               	movlw	65
+  1246  06C1  00F5               	movwf	??_set_time_minute2+1
+  1247  06C2  30EE               	movlw	238
+  1248  06C3  00F4               	movwf	??_set_time_minute2
+  1249  06C4                     u857:	
+  1250  06C4  0BF4               	decfsz	??_set_time_minute2,f
+  1251  06C5  2EC4               	goto	u857
+  1252  06C6  0BF5               	decfsz	??_set_time_minute2+1,f
+  1253  06C7  2EC4               	goto	u857
+  1254  06C8  0000               	nop
+  1255                           
+  1256                           ;minute-counter.c: 192:             while (RB5 == 1) {
+  1257  06C9  2F10               	goto	l112
+  1258  06CA                     l113:	
+  1259                           
+  1260                           ;minute-counter.c: 193:                 if (RB4 == 1){
+  1261  06CA  1E06               	btfss	6,4	;volatile
+  1262  06CB  2ECD               	goto	u471
+  1263  06CC  2ECE               	goto	u470
+  1264  06CD                     u471:	
+  1265  06CD  2F10               	goto	l112
+  1266  06CE                     u470:	
+  1267  06CE                     l1006:	
+  1268                           
+  1269                           ;minute-counter.c: 194:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+  1270  06CE  3041               	movlw	65
+  1271  06CF  00F5               	movwf	??_set_time_minute2+1
+  1272  06D0  30EE               	movlw	238
+  1273  06D1  00F4               	movwf	??_set_time_minute2
+  1274  06D2                     u867:	
+  1275  06D2  0BF4               	decfsz	??_set_time_minute2,f
+  1276  06D3  2ED2               	goto	u867
+  1277  06D4  0BF5               	decfsz	??_set_time_minute2+1,f
+  1278  06D5  2ED2               	goto	u867
+  1279  06D6  0000               	nop
+  1280                           
+  1281                           ;minute-counter.c: 195:                 while (RB4 == 1){
+  1282  06D7  2F0A               	goto	l1018
+  1283  06D8                     l1008:	
+  1284                           
+  1285                           ;minute-counter.c: 196:                     if (set_minute2 > 9) {
+  1286  06D8  0821               	movf	_set_minute2+1,w
+  1287  06D9  3A80               	xorlw	128
+  1288  06DA  00FF               	movwf	btemp+1
+  1289  06DB  3080               	movlw	128
+  1290  06DC  027F               	subwf	btemp+1,w
+  1291  06DD  1D03               	skipz
+  1292  06DE  2EE1               	goto	u485
+  1293  06DF  300A               	movlw	10
+  1294  06E0  0220               	subwf	_set_minute2,w
+  1295  06E1                     u485:	
+  1296  06E1  1C03               	skipc
+  1297  06E2  2EE4               	goto	u481
+  1298  06E3  2EE5               	goto	u480
+  1299  06E4                     u481:	
+  1300  06E4  2EEC               	goto	l1012
+  1301  06E5                     u480:	
+  1302  06E5                     l1010:	
+  1303                           
+  1304                           ;minute-counter.c: 197:                             set_minute2 = 9;
+  1305  06E5  3009               	movlw	9
+  1306  06E6  1283               	bcf	3,5	;RP0=0, select bank0
+  1307  06E7  1303               	bcf	3,6	;RP1=0, select bank0
+  1308  06E8  00A0               	movwf	_set_minute2
+  1309  06E9  3000               	movlw	0
+  1310  06EA  00A1               	movwf	_set_minute2+1
+  1311                           
+  1312                           ;minute-counter.c: 198:                             break;
+  1313  06EB  2F10               	goto	l112
+  1314  06EC                     l1012:	
+  1315                           
+  1316                           ;minute-counter.c: 200:                     set_minute2++;
+  1317  06EC  3001               	movlw	1
+  1318  06ED  1283               	bcf	3,5	;RP0=0, select bank0
+  1319  06EE  1303               	bcf	3,6	;RP1=0, select bank0
+  1320  06EF  07A0               	addwf	_set_minute2,f
+  1321  06F0  1803               	skipnc
+  1322  06F1  0AA1               	incf	_set_minute2+1,f
+  1323  06F2  3000               	movlw	0
+  1324  06F3  07A1               	addwf	_set_minute2+1,f
+  1325  06F4                     l1014:	
+  1326                           
+  1327                           ;minute-counter.c: 201:                     display_on_second_digit(set_minute2);
+  1328  06F4  0821               	movf	_set_minute2+1,w
+  1329  06F5  00F1               	movwf	display_on_second_digit@digit+1
+  1330  06F6  0820               	movf	_set_minute2,w
+  1331  06F7  00F0               	movwf	display_on_second_digit@digit
+  1332  06F8  120A  118A  255D  120A  118A  	fcall	_display_on_second_digit
+  1333  06FD                     l1016:	
+  1334                           
+  1335                           ;minute-counter.c: 202:                     _delay((unsigned long)((1000)*(20000000/4000
+      +                          .0)));
+  1336  06FD  301A               	movlw	26
+  1337  06FE  00F6               	movwf	??_set_time_minute2+2
+  1338  06FF  305E               	movlw	94
+  1339  0700  00F5               	movwf	??_set_time_minute2+1
+  1340  0701  306E               	movlw	110
+  1341  0702  00F4               	movwf	??_set_time_minute2
+  1342  0703                     u877:	
+  1343  0703  0BF4               	decfsz	??_set_time_minute2,f
+  1344  0704  2F03               	goto	u877
+  1345  0705  0BF5               	decfsz	??_set_time_minute2+1,f
+  1346  0706  2F03               	goto	u877
+  1347  0707  0BF6               	decfsz	??_set_time_minute2+2,f
+  1348  0708  2F03               	goto	u877
+  1349  0709  0000               	nop
+  1350  070A                     l1018:	
+  1351                           
+  1352                           ;minute-counter.c: 195:                 while (RB4 == 1){
+  1353  070A  1283               	bcf	3,5	;RP0=0, select bank0
+  1354  070B  1303               	bcf	3,6	;RP1=0, select bank0
+  1355  070C  1A06               	btfsc	6,4	;volatile
+  1356  070D  2F0F               	goto	u491
+  1357  070E  2F10               	goto	u490
+  1358  070F                     u491:	
+  1359  070F  2ED8               	goto	l1008
+  1360  0710                     u490:	
+  1361  0710                     l112:	
+  1362                           ;minute-counter.c: 205:             }
+  1363                           
+  1364                           
+  1365                           ;minute-counter.c: 192:             while (RB5 == 1) {
+  1366  0710  1283               	bcf	3,5	;RP0=0, select bank0
+  1367  0711  1303               	bcf	3,6	;RP1=0, select bank0
+  1368  0712  1A86               	btfsc	6,5	;volatile
+  1369  0713  2F15               	goto	u501
+  1370  0714  2F16               	goto	u500
+  1371  0715                     u501:	
+  1372  0715  2ECA               	goto	l113
+  1373  0716                     u500:	
+  1374  0716                     l120:	
+  1375  0716  0008               	return
+  1376  0717                     __end_of_set_time_minute2:	
+  1377                           
+  1378                           	psect	text6
+  1379  055D                     __ptext6:	
+  1380 ;; *************** function _display_on_second_digit *****************
+  1381 ;; Defined at:
+  1382 ;;		line 56 in file "minute-counter.c"
+  1383 ;; Parameters:    Size  Location     Type
+  1384 ;;  digit           2    0[COMMON] int 
+  1385 ;; Auto vars:     Size  Location     Type
+  1386 ;;		None
+  1387 ;; Return value:  Size  Location     Type
+  1388 ;;                  1    wreg      void 
+  1389 ;; Registers used:
+  1390 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1391 ;; Tracked objects:
+  1392 ;;		On entry : 0/0
+  1393 ;;		On exit  : 0/0
+  1394 ;;		Unchanged: 0/0
+  1395 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1396 ;;      Params:         2       0       0       0       0
+  1397 ;;      Locals:         0       0       0       0       0
+  1398 ;;      Temps:          2       0       0       0       0
+  1399 ;;      Totals:         4       0       0       0       0
+  1400 ;;Total ram usage:        4 bytes
+  1401 ;; Hardware stack levels used:    2
+  1402 ;; This function calls:
+  1403 ;;		Nothing
+  1404 ;; This function is called by:
+  1405 ;;		_set_time_minute2
+  1406 ;;		_main
+  1407 ;;		_count_to_minutes
+  1408 ;;		_countdown_to_second
+  1409 ;; This function uses a non-reentrant model
+  1410 ;;
+  1411                           
+  1412                           
+  1413                           ;psect for function _display_on_second_digit
+  1414  055D                     _display_on_second_digit:	
+  1415  055D                     l934:	
+  1416                           ;incstack = 0
+  1417                           ; Regs used in _display_on_second_digit: [wreg-fsr0h+status,2+status,0+pclath]
+  1418                           
+  1419                           
+  1420                           ;minute-counter.c: 57:     PORTC = SEGMENT_MAP[digit];
+  1421  055D  0870               	movf	display_on_second_digit@digit,w
+  1422  055E  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
+  1423  055F  0084               	movwf	4
+  1424  0560  120A  118A  2003  120A  118A  	fcall	stringdir
+  1425  0565  1283               	bcf	3,5	;RP0=0, select bank0
+  1426  0566  1303               	bcf	3,6	;RP1=0, select bank0
+  1427  0567  0087               	movwf	7	;volatile
+  1428  0568                     l936:	
+  1429                           
+  1430                           ;minute-counter.c: 58:     PORTB = 0B00001110;
+  1431  0568  300E               	movlw	14
+  1432  0569  0086               	movwf	6	;volatile
+  1433  056A                     l938:	
+  1434                           
+  1435                           ;minute-counter.c: 59:     _delay((unsigned long)((10)*(20000000/4000.0)));
+  1436  056A  3041               	movlw	65
+  1437  056B  00F3               	movwf	??_display_on_second_digit+1
+  1438  056C  30EE               	movlw	238
+  1439  056D  00F2               	movwf	??_display_on_second_digit
+  1440  056E                     u887:	
+  1441  056E  0BF2               	decfsz	??_display_on_second_digit,f
+  1442  056F  2D6E               	goto	u887
+  1443  0570  0BF3               	decfsz	??_display_on_second_digit+1,f
+  1444  0571  2D6E               	goto	u887
+  1445  0572  0000               	nop
+  1446  0573                     l940:	
+  1447                           
+  1448                           ;minute-counter.c: 60:     RB0 = 1;
+  1449  0573  1283               	bcf	3,5	;RP0=0, select bank0
+  1450  0574  1303               	bcf	3,6	;RP1=0, select bank0
+  1451  0575  1406               	bsf	6,0	;volatile
+  1452  0576                     l56:	
+  1453  0576  0008               	return
+  1454  0577                     __end_of_display_on_second_digit:	
+  1455                           
+  1456                           	psect	text7
+  1457  065D                     __ptext7:	
+  1458 ;; *************** function _set_time_minute1 *****************
+  1459 ;; Defined at:
+  1460 ;;		line 209 in file "minute-counter.c"
+  1461 ;; Parameters:    Size  Location     Type
+  1462 ;;		None
+  1463 ;; Auto vars:     Size  Location     Type
+  1464 ;;		None
+  1465 ;; Return value:  Size  Location     Type
+  1466 ;;                  1    wreg      void 
+  1467 ;; Registers used:
+  1468 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1469 ;; Tracked objects:
+  1470 ;;		On entry : 0/0
+  1471 ;;		On exit  : 0/0
+  1472 ;;		Unchanged: 0/0
+  1473 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1474 ;;      Params:         0       0       0       0       0
+  1475 ;;      Locals:         0       0       0       0       0
+  1476 ;;      Temps:          3       0       0       0       0
+  1477 ;;      Totals:         3       0       0       0       0
+  1478 ;;Total ram usage:        3 bytes
+  1479 ;; Hardware stack levels used:    1
+  1480 ;; Hardware stack levels required when called:    2
+  1481 ;; This function calls:
+  1482 ;;		_display_on_first_digit
+  1483 ;; This function is called by:
+  1484 ;;		_main
+  1485 ;; This function uses a non-reentrant model
+  1486 ;;
+  1487                           
+  1488                           
+  1489                           ;psect for function _set_time_minute1
+  1490  065D                     _set_time_minute1:	
+  1491  065D                     l1020:	
+  1492                           ;incstack = 0
+  1493                           ; Regs used in _set_time_minute1: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1494                           
+  1495                           
+  1496                           ;minute-counter.c: 210:     if (RB5 == 1){
+  1497  065D  1283               	bcf	3,5	;RP0=0, select bank0
+  1498  065E  1303               	bcf	3,6	;RP1=0, select bank0
+  1499  065F  1E86               	btfss	6,5	;volatile
+  1500  0660  2E62               	goto	u511
+  1501  0661  2E63               	goto	u510
+  1502  0662                     u511:	
+  1503  0662  2EB9               	goto	l132
+  1504  0663                     u510:	
+  1505  0663                     l1022:	
+  1506                           
+  1507                           ;minute-counter.c: 211:             _delay((unsigned long)((10)*(20000000/4000.0)));
+  1508  0663  3041               	movlw	65
+  1509  0664  00F3               	movwf	??_set_time_minute1+1
+  1510  0665  30EE               	movlw	238
+  1511  0666  00F2               	movwf	??_set_time_minute1
+  1512  0667                     u897:	
+  1513  0667  0BF2               	decfsz	??_set_time_minute1,f
+  1514  0668  2E67               	goto	u897
+  1515  0669  0BF3               	decfsz	??_set_time_minute1+1,f
+  1516  066A  2E67               	goto	u897
+  1517  066B  0000               	nop
+  1518                           
+  1519                           ;minute-counter.c: 212:             while (RB5 == 1) {
+  1520  066C  2EB3               	goto	l124
+  1521  066D                     l125:	
+  1522                           
+  1523                           ;minute-counter.c: 213:                 if (RB4 == 1){
+  1524  066D  1E06               	btfss	6,4	;volatile
+  1525  066E  2E70               	goto	u521
+  1526  066F  2E71               	goto	u520
+  1527  0670                     u521:	
+  1528  0670  2EB3               	goto	l124
+  1529  0671                     u520:	
+  1530  0671                     l1024:	
+  1531                           
+  1532                           ;minute-counter.c: 214:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+  1533  0671  3041               	movlw	65
+  1534  0672  00F3               	movwf	??_set_time_minute1+1
+  1535  0673  30EE               	movlw	238
+  1536  0674  00F2               	movwf	??_set_time_minute1
+  1537  0675                     u907:	
+  1538  0675  0BF2               	decfsz	??_set_time_minute1,f
+  1539  0676  2E75               	goto	u907
+  1540  0677  0BF3               	decfsz	??_set_time_minute1+1,f
+  1541  0678  2E75               	goto	u907
+  1542  0679  0000               	nop
+  1543                           
+  1544                           ;minute-counter.c: 215:                 while (RB4 == 1){
+  1545  067A  2EAD               	goto	l1036
+  1546  067B                     l1026:	
+  1547                           
+  1548                           ;minute-counter.c: 216:                     if (set_minute1 > 9) {
+  1549  067B  0823               	movf	_set_minute1+1,w
+  1550  067C  3A80               	xorlw	128
+  1551  067D  00FF               	movwf	btemp+1
+  1552  067E  3080               	movlw	128
+  1553  067F  027F               	subwf	btemp+1,w
+  1554  0680  1D03               	skipz
+  1555  0681  2E84               	goto	u535
+  1556  0682  300A               	movlw	10
+  1557  0683  0222               	subwf	_set_minute1,w
+  1558  0684                     u535:	
+  1559  0684  1C03               	skipc
+  1560  0685  2E87               	goto	u531
+  1561  0686  2E88               	goto	u530
+  1562  0687                     u531:	
+  1563  0687  2E8F               	goto	l1030
+  1564  0688                     u530:	
+  1565  0688                     l1028:	
+  1566                           
+  1567                           ;minute-counter.c: 217:                             set_minute1 = 9;
+  1568  0688  3009               	movlw	9
+  1569  0689  1283               	bcf	3,5	;RP0=0, select bank0
+  1570  068A  1303               	bcf	3,6	;RP1=0, select bank0
+  1571  068B  00A2               	movwf	_set_minute1
+  1572  068C  3000               	movlw	0
+  1573  068D  00A3               	movwf	_set_minute1+1
+  1574                           
+  1575                           ;minute-counter.c: 218:                             break;
+  1576  068E  2EB3               	goto	l124
+  1577  068F                     l1030:	
+  1578                           
+  1579                           ;minute-counter.c: 220:                     set_minute1++;
+  1580  068F  3001               	movlw	1
+  1581  0690  1283               	bcf	3,5	;RP0=0, select bank0
+  1582  0691  1303               	bcf	3,6	;RP1=0, select bank0
+  1583  0692  07A2               	addwf	_set_minute1,f
+  1584  0693  1803               	skipnc
+  1585  0694  0AA3               	incf	_set_minute1+1,f
+  1586  0695  3000               	movlw	0
+  1587  0696  07A3               	addwf	_set_minute1+1,f
+  1588  0697                     l1032:	
+  1589                           
+  1590                           ;minute-counter.c: 221:                     display_on_first_digit(set_minute1);
+  1591  0697  0823               	movf	_set_minute1+1,w
+  1592  0698  00F1               	movwf	display_on_first_digit@digit+1
+  1593  0699  0822               	movf	_set_minute1,w
+  1594  069A  00F0               	movwf	display_on_first_digit@digit
+  1595  069B  120A  118A  2551  120A  118A  	fcall	_display_on_first_digit
+  1596  06A0                     l1034:	
+  1597                           
+  1598                           ;minute-counter.c: 222:                     _delay((unsigned long)((1000)*(20000000/4000
+      +                          .0)));
+  1599  06A0  301A               	movlw	26
+  1600  06A1  00F4               	movwf	??_set_time_minute1+2
+  1601  06A2  305E               	movlw	94
+  1602  06A3  00F3               	movwf	??_set_time_minute1+1
+  1603  06A4  306E               	movlw	110
+  1604  06A5  00F2               	movwf	??_set_time_minute1
+  1605  06A6                     u917:	
+  1606  06A6  0BF2               	decfsz	??_set_time_minute1,f
+  1607  06A7  2EA6               	goto	u917
+  1608  06A8  0BF3               	decfsz	??_set_time_minute1+1,f
+  1609  06A9  2EA6               	goto	u917
+  1610  06AA  0BF4               	decfsz	??_set_time_minute1+2,f
+  1611  06AB  2EA6               	goto	u917
+  1612  06AC  0000               	nop
+  1613  06AD                     l1036:	
+  1614                           
+  1615                           ;minute-counter.c: 215:                 while (RB4 == 1){
+  1616  06AD  1283               	bcf	3,5	;RP0=0, select bank0
+  1617  06AE  1303               	bcf	3,6	;RP1=0, select bank0
+  1618  06AF  1A06               	btfsc	6,4	;volatile
+  1619  06B0  2EB2               	goto	u541
+  1620  06B1  2EB3               	goto	u540
+  1621  06B2                     u541:	
+  1622  06B2  2E7B               	goto	l1026
+  1623  06B3                     u540:	
+  1624  06B3                     l124:	
+  1625                           ;minute-counter.c: 225:             }
+  1626                           
+  1627                           
+  1628                           ;minute-counter.c: 212:             while (RB5 == 1) {
+  1629  06B3  1283               	bcf	3,5	;RP0=0, select bank0
+  1630  06B4  1303               	bcf	3,6	;RP1=0, select bank0
+  1631  06B5  1A86               	btfsc	6,5	;volatile
+  1632  06B6  2EB8               	goto	u551
+  1633  06B7  2EB9               	goto	u550
+  1634  06B8                     u551:	
+  1635  06B8  2E6D               	goto	l125
+  1636  06B9                     u550:	
+  1637  06B9                     l132:	
+  1638  06B9  0008               	return
+  1639  06BA                     __end_of_set_time_minute1:	
+  1640                           
+  1641                           	psect	text8
+  1642  0551                     __ptext8:	
+  1643 ;; *************** function _display_on_first_digit *****************
+  1644 ;; Defined at:
+  1645 ;;		line 52 in file "minute-counter.c"
+  1646 ;; Parameters:    Size  Location     Type
+  1647 ;;  digit           2    0[COMMON] int 
+  1648 ;; Auto vars:     Size  Location     Type
+  1649 ;;		None
+  1650 ;; Return value:  Size  Location     Type
+  1651 ;;                  1    wreg      void 
+  1652 ;; Registers used:
+  1653 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1654 ;; Tracked objects:
+  1655 ;;		On entry : 0/0
+  1656 ;;		On exit  : 0/0
+  1657 ;;		Unchanged: 0/0
+  1658 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1659 ;;      Params:         2       0       0       0       0
+  1660 ;;      Locals:         0       0       0       0       0
+  1661 ;;      Temps:          0       0       0       0       0
+  1662 ;;      Totals:         2       0       0       0       0
+  1663 ;;Total ram usage:        2 bytes
+  1664 ;; Hardware stack levels used:    2
+  1665 ;; This function calls:
+  1666 ;;		Nothing
+  1667 ;; This function is called by:
+  1668 ;;		_set_time_minute1
+  1669 ;;		_main
+  1670 ;;		_count_to_minutes
+  1671 ;;		_countdown_to_second
+  1672 ;; This function uses a non-reentrant model
+  1673 ;;
+  1674                           
+  1675                           
+  1676                           ;psect for function _display_on_first_digit
+  1677  0551                     _display_on_first_digit:	
+  1678  0551                     l932:	
+  1679                           ;incstack = 0
+  1680                           ; Regs used in _display_on_first_digit: [wreg-fsr0h+status,2+status,0+pclath]
+  1681                           
+  1682                           
+  1683                           ;minute-counter.c: 53:     PORTD = SEGMENT_MAP[digit];
+  1684  0551  0870               	movf	display_on_first_digit@digit,w
+  1685  0552  3E01               	addlw	low ((_SEGMENT_MAP-__stringbase)| (0+32768))
+  1686  0553  0084               	movwf	4
+  1687  0554  120A  118A  2003  120A  118A  	fcall	stringdir
+  1688  0559  1283               	bcf	3,5	;RP0=0, select bank0
+  1689  055A  1303               	bcf	3,6	;RP1=0, select bank0
+  1690  055B  0088               	movwf	8	;volatile
+  1691  055C                     l53:	
+  1692  055C  0008               	return
+  1693  055D                     __end_of_display_on_first_digit:	
+  1694  007E                     btemp	set	126	;btemp
+  1695  007E                     wtemp0	set	126
 
 
 Data Sizes:
     Strings     0
-    Constant    10
-    Data        2
-    BSS         0
+    Constant    11
+    Data        0
+    BSS         18
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      3       5
-    BANK0            80      0       0
+    COMMON           14     10      14
+    BANK0            80      8      22
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            96      0       0
@@ -400,7 +1739,13 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
-    None.
+    _main->_set_time_minute2
+    _main->_set_time_second1
+    _main->_set_time_second2
+    _set_time_second2->_display_on_fifth_digit
+    _set_time_second1->_display_on_fourth_digit
+    _set_time_minute2->_display_on_second_digit
+    _set_time_minute1->_display_on_first_digit
 
 Critical Paths under _main in BANK0
 
@@ -423,63 +1768,186 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (1) _main                                                 3     3      0       0
-                                              0 COMMON     3     3      0
+ (0) _main                                                11    11      0    2612
+                                              7 COMMON     3     3      0
+                                              0 BANK0      8     8      0
+             _display_on_fifth_digit
+             _display_on_first_digit
+            _display_on_fourth_digit
+            _display_on_second_digit
+                   _set_time_minute1
+                   _set_time_minute2
+                   _set_time_second1
+                   _set_time_second2
  ---------------------------------------------------------------------------------
- Estimated maximum stack depth 1
+ (1) _set_time_second2                                     3     3      0     326
+                                              4 COMMON     3     3      0
+             _display_on_fifth_digit
+ ---------------------------------------------------------------------------------
+ (3) _display_on_fifth_digit                               4     2      2     326
+                                              0 COMMON     4     2      2
+ ---------------------------------------------------------------------------------
+ (1) _set_time_second1                                     3     3      0     326
+                                              4 COMMON     3     3      0
+            _display_on_fourth_digit
+ ---------------------------------------------------------------------------------
+ (3) _display_on_fourth_digit                              4     2      2     326
+                                              0 COMMON     4     2      2
+ ---------------------------------------------------------------------------------
+ (1) _set_time_minute2                                     3     3      0     326
+                                              4 COMMON     3     3      0
+            _display_on_second_digit
+ ---------------------------------------------------------------------------------
+ (3) _display_on_second_digit                              4     2      2     326
+                                              0 COMMON     4     2      2
+ ---------------------------------------------------------------------------------
+ (1) _set_time_minute1                                     3     3      0     326
+                                              2 COMMON     3     3      0
+             _display_on_first_digit
+ ---------------------------------------------------------------------------------
+ (3) _display_on_first_digit                               2     0      2     326
+                                              0 COMMON     2     0      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
+   _display_on_fifth_digit
+   _display_on_first_digit
+   _display_on_fourth_digit
+   _display_on_second_digit
+   _set_time_minute1
+     _display_on_first_digit
+   _set_time_minute2
+     _display_on_second_digit
+   _set_time_second1
+     _display_on_fourth_digit
+   _set_time_second2
+     _display_on_fifth_digit
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BANK3               60      0       0       9        0.0%
-BITBANK3            60      0       0       8        0.0%
-SFR3                 0      0       0       4        0.0%
-BITSFR3              0      0       0       4        0.0%
-BANK2               60      0       0      11        0.0%
-BITBANK2            60      0       0      10        0.0%
-SFR2                 0      0       0       5        0.0%
-BITSFR2              0      0       0       5        0.0%
-BANK1               50      0       0       7        0.0%
-BITBANK1            50      0       0       6        0.0%
-SFR1                 0      0       0       2        0.0%
-BITSFR1              0      0       0       2        0.0%
-BANK0               50      0       0       5        0.0%
-BITBANK0            50      0       0       4        0.0%
-SFR0                 0      0       0       1        0.0%
-BITSFR0              0      0       0       1        0.0%
-COMMON               E      3       5       1       35.7%
 BITCOMMON            E      0       0       0        0.0%
-CODE                 0      0       0       0        0.0%
-DATA                 0      0       5      12        0.0%
-ABS                  0      0       5       3        0.0%
-NULL                 0      0       0       0        0.0%
-STACK                0      0       0       2        0.0%
 EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      A       E       1      100.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0      24       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      8      16       5       27.5%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0      24      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Fri Jun 12 19:14:36 2020
+Symbol Table                                                                                   Sun Jun 14 16:19:44 2020
 
-                      pc 0002              __CFG_CP$OFF 0000                       u17 07D4  
-                     fsr 0004                      l640 07BC                      l642 07C5  
-                    l644 07CE                      l636 07AA                      l646 07DB  
-                    l638 07B6                      l648 07E6             __CFG_CPD$OFF 0000  
-                    fsr0 0004             __CFG_FOSC$HS 0000             __CFG_LVP$OFF 0000  
-           __CFG_WRT$OFF 0000                     _main 07AA                     btemp 007E  
-                   start 0000                    ?_main 0070            __CFG_WDTE$OFF 0000  
-                  _PORTA 0005                    _PORTB 0006                    _PORTC 0007  
-                  _PORTD 0008                    _PORTE 0009                    _TRISB 0086  
-                  _TRISC 0087                    _TRISD 0088                    _count 0073  
-         __CFG_BOREN$OFF 0000                    pclath 000A                    status 0003  
-                  wtemp0 007E          __initialization 07F0             __end_of_main 07F0  
-                 ??_main 0070           __CFG_PWRTE$OFF 0000             __pdataCOMMON 0073  
-__end_of__initialization 07FC           __pcstackCOMMON 0070               __pmaintext 07AA  
-             __stringtab 0003     end_of_initialization 07FC            __pidataCOMMON 07A8  
-    start_initialization 07F0                ___latbits 0002                __pstrings 0003  
-    __end_of_SEGMENT_MAP 0013              __stringbase 0008       __end_of__stringtab 0009  
-            _SEGMENT_MAP 0009            __size_of_main 0046                stringcode 0003  
-               stringdir 0003                 stringtab 0003  
+    display_on_second_digit@digit 0070                                 pc 0002                       __CFG_CP$OFF 0000  
+                              l53 055C                                l62 0590                                l56 0576  
+                              l65 05AA                                l88 0656                                l96 065C  
+                              l89 0614                                fsr 0004                               l100 05FD  
+                             l101 05BB                               l112 0710                               l120 0716  
+                             l113 06CA                               l124 06B3                               l132 06B9  
+                             l108 0603                               l125 066D                               l932 0551  
+                             l940 0573                               l934 055D                               l942 0577  
+                             l950 0591                               l936 0568                               l944 0582  
+                             l952 059C                               l938 056A                               l946 0584  
+                             l954 059E                               l970 0618                               l948 058D  
+                             l956 05A7                               l980 0643                               l972 0622  
+                             l990 05C9                               l974 062F                               l982 0650  
+                             l966 0604                               l992 05D6                               l984 05AB  
+                             l976 0634                               l968 060A                               l994 05DB  
+                             l986 05B1                               l978 063A                               l996 05E1  
+                             l988 05BF                               l998 05EA                               _RB0 0030  
+                             _RB1 0031                               _RB2 0032                               _RB3 0033  
+                             _RB4 0034                               _RB5 0035                               u400 065C  
+                             u401 065B                               u410 05B1                               u411 05B0  
+                             u500 0716                               u420 05BF                               u501 0715  
+                             u421 05BE                               u510 0663                               u430 05D6  
+                             u511 0662                               u431 05D5                               u520 0671  
+                             u440 05FD                               u360 060A                               u521 0670  
+                             u441 05FC                               u361 0609                               u530 0688  
+                             u450 0603                               u370 0618                      __CFG_CPD$OFF 0000  
+                             u531 0687                               u451 0602                               u435 05D2  
+                             u371 0617                               u540 06B3                               u460 06C0  
+                             u380 062F                               u700 07AF                               u541 06B2  
+                             u461 06BF                               u381 062E                               u701 07AE  
+                             u550 06B9                               u470 06CE                               u390 0656  
+                             u551 06B8                               u535 0684                               u471 06CD  
+                             u391 0655                               u480 06E5                               u481 06E4  
+                             u385 062B                               u490 0710                               u650 072E  
+                             u491 070F                               u651 072A                               u660 0738  
+                             u485 06E1                               u717 075B                               u661 0734  
+                             u670 0742                               u807 05A2                               u727 076C  
+                             u671 073E                               u664 0731                               u817 05B5  
+                             u737 077E                               u690 0757                               u674 073B  
+                             u907 0675                               u827 05C3                               u747 0790  
+                             u691 0756                               u684 0745                               u917 06A6  
+                             u837 05F0                               u757 07A2                               u847 0588  
+                             u767 07B5                               u857 06C4                               u777 060E  
+                             u867 06D2                               u787 061C                               u877 0703  
+                             u797 0649                               u887 056E                               u897 0667  
+                             fsr0 0004                      __CFG_FOSC$HS 0000                      __CFG_LVP$OFF 0000  
+                            l1000 05F7                              l1010 06E5                              l1002 06BA  
+                            l1020 065D                              l1012 06EC                              l1004 06C0  
+                            l1100 0751                              l1030 068F                              l1022 0663  
+                            l1014 06F4                              l1006 06CE                              l1110 0785  
+                            l1102 0757                              l1032 0697                              l1024 0671  
+                            l1016 06FD                              l1008 06D8                              l1120 07BC  
+                            l1112 078A                              l1104 0761                              l1034 06A0  
+                            l1026 067B                              l1018 070A                              l1122 07C7  
+                            l1114 079C                              l1106 0766                              l1028 0688  
+                            l1036 06AD                              l1124 07D2                              l1108 0773  
+                            l1116 07A9                              l1126 07DB                              l1118 07AF  
+                            l1092 0717                              l1094 071E                              l1096 0722  
+                            l1098 0724                      __CFG_WRT$OFF 0000         ??_display_on_second_digit 0072  
+                     main@minute2 0030                       main@second1 0032                       main@second2 0034  
+                            _main 0717                              btemp 007E                              start 0000  
+ __end_of_display_on_fourth_digit 0591          ??_display_on_fifth_digit 0072                             ?_main 0070  
+                   __CFG_WDTE$OFF 0000                             _PORTA 0005                             _PORTB 0006  
+                           _PORTC 0007                             _PORTD 0008                             _PORTE 0009  
+                           _TRISB 0086                             _TRISC 0087                             _TRISD 0088  
+                           _count 002C                    __CFG_BOREN$OFF 0000                             pclath 000A  
+                           status 0003                             wtemp0 007E          ??_display_on_first_digit 0072  
+                 __initialization 07E8                      __end_of_main 07E8   __end_of_display_on_second_digit 0577  
+                          ??_main 0077                  _set_time_minute1 065D                  _set_time_minute2 06BA  
+                _set_time_second1 05AB                  _set_time_second2 0604                    __CFG_PWRTE$OFF 0000  
+ __size_of_display_on_fifth_digit 001A       display_on_first_digit@digit 0070           __end_of__initialization 07FC  
+ __size_of_display_on_first_digit 000C                    __pcstackCOMMON 0070            _display_on_fifth_digit 0591  
+                      __pbssBANK0 0020      display_on_fourth_digit@digit 0070       display_on_fifth_digit@digit 0070  
+                      __pmaintext 0717          ?_display_on_fourth_digit 0070            _display_on_first_digit 0551  
+                      __stringtab 0003                           __ptext1 0604                           __ptext2 0591  
+                         __ptext3 05AB                           __ptext4 0577                           __ptext5 06BA  
+                         __ptext6 055D                           __ptext7 065D                           __ptext8 0551  
+        __end_of_set_time_minute1 06BA          __end_of_set_time_minute2 0717          __end_of_set_time_second1 0604  
+        __end_of_set_time_second2 065D          ?_display_on_second_digit 0070              end_of_initialization 07FC  
+         ?_display_on_fifth_digit 0070               start_initialization 07E8    __end_of_display_on_fifth_digit 05AB  
+         ?_display_on_first_digit 0070                       __pbssCOMMON 007A                         ___latbits 0002  
+                   __pcstackBANK0 002E  __size_of_display_on_fourth_digit 001A    __end_of_display_on_first_digit 055D  
+                       __pstrings 0003                      _fourth_digit 0024                 ?_set_time_minute1 0070  
+               ?_set_time_minute2 0070                 ?_set_time_second1 0070                 ?_set_time_second2 0070  
+              ??_set_time_minute1 0072                ??_set_time_minute2 0074                ??_set_time_second1 0074  
+              ??_set_time_second2 0074               __end_of_SEGMENT_MAP 0014  __size_of_display_on_second_digit 001A  
+                     __stringbase 0008                       _first_digit 002A                      _second_digit 0028  
+              __end_of__stringtab 0009                       _SEGMENT_MAP 0009           _display_on_fourth_digit 0577  
+                   __size_of_main 00D1           _display_on_second_digit 055D                         stringcode 0003  
+                     _set_minute1 0022                       _set_minute2 0020                       _set_second1 007C  
+                     _set_second2 007A                       _third_digit 0026         ??_display_on_fourth_digit 0072  
+                        stringdir 0003                          stringtab 0003         __size_of_set_time_minute1 005D  
+       __size_of_set_time_minute2 005D         __size_of_set_time_second1 0059         __size_of_set_time_second2 0059  

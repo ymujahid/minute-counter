@@ -1,17 +1,39 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"166 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
-[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"216
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 216: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"340 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 340: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "278
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 278: extern volatile unsigned char PORTC __attribute__((address(0x007)));
 [v _PORTC `Vuc ~T0 @X0 0 e@7 ]
-"340
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 340: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"216
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 216: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+[v F842 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
+[v __delay `JF842 ~T0 @X0 0 e ]
+[p i __delay ]
+"2674 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2674: extern volatile __bit RB0 __attribute__((address(0x30)));
+[v _RB0 `Vb ~T0 @X0 0 e@48 ]
+"2677
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2677: extern volatile __bit RB1 __attribute__((address(0x31)));
+[v _RB1 `Vb ~T0 @X0 0 e@49 ]
+"2680
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2680: extern volatile __bit RB2 __attribute__((address(0x32)));
+[v _RB2 `Vb ~T0 @X0 0 e@50 ]
+"2683
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2683: extern volatile __bit RB3 __attribute__((address(0x33)));
+[v _RB3 `Vb ~T0 @X0 0 e@51 ]
+"2689
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2689: extern volatile __bit RB5 __attribute__((address(0x35)));
+[v _RB5 `Vb ~T0 @X0 0 e@53 ]
+"2686
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2686: extern volatile __bit RB4 __attribute__((address(0x34)));
+[v _RB4 `Vb ~T0 @X0 0 e@52 ]
+[p mainexit ]
+"166
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
 "402
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 402: extern volatile unsigned char PORTE __attribute__((address(0x009)));
 [v _PORTE `Vuc ~T0 @X0 0 e@9 ]
@@ -24,10 +46,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1499
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 1499: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-[v F842 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
-[v __delay `JF842 ~T0 @X0 0 e ]
-[p i __delay ]
 "11 minute-counter.c
 [p x FOSC = HS ]
 "12
@@ -224,9 +242,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"28 minute-counter.c
-[; ;minute-counter.c: 28: unsigned char const SEGMENT_MAP[] = {0x3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7F, 0X6F};
-[v _SEGMENT_MAP `Cuc ~T0 @X0 -> 10 `i e ]
+"40 minute-counter.c
+[; ;minute-counter.c: 40: unsigned char const SEGMENT_MAP[] = {0x3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7F, 0X6F, 0B00001001};
+[v _SEGMENT_MAP `Cuc ~T0 @X0 -> 11 `i e ]
 [i _SEGMENT_MAP
 :U ..
 -> -> 63 `i `uc
@@ -239,56 +257,799 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 7 `i `uc
 -> -> 127 `i `uc
 -> -> 111 `i `uc
+-> -> 9 `i `uc
 ..
 ]
-"30
-[; ;minute-counter.c: 30: int count = 1;
+"42
+[; ;minute-counter.c: 42: int count = 0;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
--> 1 `i
+-> 0 `i
 ]
+"43
+[; ;minute-counter.c: 43: int first_digit = 0;
+[v _first_digit `i ~T0 @X0 1 e ]
+[i _first_digit
+-> 0 `i
+]
+"44
+[; ;minute-counter.c: 44: int second_digit = 0;
+[v _second_digit `i ~T0 @X0 1 e ]
+[i _second_digit
+-> 0 `i
+]
+"45
+[; ;minute-counter.c: 45: int third_digit = 0;
+[v _third_digit `i ~T0 @X0 1 e ]
+[i _third_digit
+-> 0 `i
+]
+"46
+[; ;minute-counter.c: 46: int fourth_digit = 0;
+[v _fourth_digit `i ~T0 @X0 1 e ]
+[i _fourth_digit
+-> 0 `i
+]
+"47
+[; ;minute-counter.c: 47: int set_second1 = 0;
+[v _set_second1 `i ~T0 @X0 1 e ]
+[i _set_second1
+-> 0 `i
+]
+"48
+[; ;minute-counter.c: 48: int set_second2 = 0;
+[v _set_second2 `i ~T0 @X0 1 e ]
+[i _set_second2
+-> 0 `i
+]
+"49
+[; ;minute-counter.c: 49: int set_minute1 = 0;
+[v _set_minute1 `i ~T0 @X0 1 e ]
+[i _set_minute1
+-> 0 `i
+]
+"50
+[; ;minute-counter.c: 50: int set_minute2 = 0;
+[v _set_minute2 `i ~T0 @X0 1 e ]
+[i _set_minute2
+-> 0 `i
+]
+"52
+[; ;minute-counter.c: 52: void display_on_first_digit(int digit){
+[v _display_on_first_digit `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _display_on_first_digit ]
+[v _digit `i ~T0 @X0 1 r1 ]
+[f ]
+"53
+[; ;minute-counter.c: 53:     PORTD = SEGMENT_MAP[digit];
+[e = _PORTD *U + &U _SEGMENT_MAP * -> -> _digit `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
+"54
+[; ;minute-counter.c: 54: }
+[e :UE 95 ]
+}
+"56
+[; ;minute-counter.c: 56: void display_on_second_digit(int digit){
+[v _display_on_second_digit `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _display_on_second_digit ]
+[v _digit `i ~T0 @X0 1 r1 ]
+[f ]
+"57
+[; ;minute-counter.c: 57:     PORTC = SEGMENT_MAP[digit];
+[e = _PORTC *U + &U _SEGMENT_MAP * -> -> _digit `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
+"58
+[; ;minute-counter.c: 58:     PORTB = 0B00001110;
+[e = _PORTB -> -> 14 `i `uc ]
+"59
+[; ;minute-counter.c: 59:     _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"60
+[; ;minute-counter.c: 60:     RB0 = 1;
+[e = _RB0 -> -> 1 `i `b ]
+"62
+[; ;minute-counter.c: 62: }
+[e :UE 96 ]
+}
+"64
+[; ;minute-counter.c: 64: void display_colon_on_third_digit(){
+[v _display_colon_on_third_digit `(v ~T0 @X0 1 ef ]
+{
+[e :U _display_colon_on_third_digit ]
+[f ]
+"65
+[; ;minute-counter.c: 65:     PORTC = SEGMENT_MAP[10];
+[e = _PORTC *U + &U _SEGMENT_MAP * -> -> -> 10 `i `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
+"66
+[; ;minute-counter.c: 66:     PORTB = 0B00001101;
+[e = _PORTB -> -> 13 `i `uc ]
+"67
+[; ;minute-counter.c: 67:     _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"68
+[; ;minute-counter.c: 68:     RB1 = 1;
+[e = _RB1 -> -> 1 `i `b ]
+"70
+[; ;minute-counter.c: 70: }
+[e :UE 97 ]
+}
+"72
+[; ;minute-counter.c: 72: void display_on_fourth_digit(int digit){
+[v _display_on_fourth_digit `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _display_on_fourth_digit ]
+[v _digit `i ~T0 @X0 1 r1 ]
+[f ]
+"73
+[; ;minute-counter.c: 73:     PORTC = SEGMENT_MAP[digit];
+[e = _PORTC *U + &U _SEGMENT_MAP * -> -> _digit `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
+"74
+[; ;minute-counter.c: 74:     PORTB = 0B00001011;
+[e = _PORTB -> -> 11 `i `uc ]
+"75
+[; ;minute-counter.c: 75:     _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"76
+[; ;minute-counter.c: 76:     RB2 = 1;
+[e = _RB2 -> -> 1 `i `b ]
+"78
+[; ;minute-counter.c: 78: }
+[e :UE 98 ]
+}
+"80
+[; ;minute-counter.c: 80: void display_on_fifth_digit(int digit){
+[v _display_on_fifth_digit `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _display_on_fifth_digit ]
+[v _digit `i ~T0 @X0 1 r1 ]
+[f ]
+"81
+[; ;minute-counter.c: 81:     PORTC = SEGMENT_MAP[digit];
+[e = _PORTC *U + &U _SEGMENT_MAP * -> -> _digit `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
+"82
+[; ;minute-counter.c: 82:     PORTB = 0B00000111;
+[e = _PORTB -> -> 7 `i `uc ]
+"83
+[; ;minute-counter.c: 83:     _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"84
+[; ;minute-counter.c: 84:     RB3 = 1;
+[e = _RB3 -> -> 1 `i `b ]
+"86
+[; ;minute-counter.c: 86: }
+[e :UE 99 ]
+}
+"88
+[; ;minute-counter.c: 88: void count_to_minutes(int minute) {
+[v _count_to_minutes `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _count_to_minutes ]
+[v _minute `i ~T0 @X0 1 r1 ]
+[f ]
+"89
+[; ;minute-counter.c: 89:         display_on_first_digit(first_digit);
+[e ( _display_on_first_digit (1 _first_digit ]
+"90
+[; ;minute-counter.c: 90:         display_on_second_digit(second_digit);
+[e ( _display_on_second_digit (1 _second_digit ]
+"91
+[; ;minute-counter.c: 91:         display_colon_on_third_digit();
+[e ( _display_colon_on_third_digit ..  ]
+"92
+[; ;minute-counter.c: 92:         display_on_fourth_digit(third_digit);
+[e ( _display_on_fourth_digit (1 _third_digit ]
+"93
+[; ;minute-counter.c: 93:         display_on_fifth_digit(fourth_digit);
+[e ( _display_on_fifth_digit (1 _fourth_digit ]
+"95
+[; ;minute-counter.c: 95:         if (fourth_digit < 9){
+[e $ ! < _fourth_digit -> 9 `i 101  ]
+{
+"96
+[; ;minute-counter.c: 96:             fourth_digit++;
+[e ++ _fourth_digit -> 1 `i ]
+"97
+[; ;minute-counter.c: 97:         }
+}
+[e $U 102  ]
+"98
+[; ;minute-counter.c: 98:         else {
+[e :U 101 ]
+{
+"99
+[; ;minute-counter.c: 99:             fourth_digit = 0;
+[e = _fourth_digit -> 0 `i ]
+"100
+[; ;minute-counter.c: 100:             third_digit++;
+[e ++ _third_digit -> 1 `i ]
+"101
+[; ;minute-counter.c: 101:             if (third_digit > 5){
+[e $ ! > _third_digit -> 5 `i 103  ]
+{
+"102
+[; ;minute-counter.c: 102:                 third_digit = 0;
+[e = _third_digit -> 0 `i ]
+"103
+[; ;minute-counter.c: 103:                 second_digit++;
+[e ++ _second_digit -> 1 `i ]
+"104
+[; ;minute-counter.c: 104:                 if (second_digit > 9){
+[e $ ! > _second_digit -> 9 `i 104  ]
+{
+"105
+[; ;minute-counter.c: 105:                     second_digit = 0;
+[e = _second_digit -> 0 `i ]
+"106
+[; ;minute-counter.c: 106:                     first_digit++;
+[e ++ _first_digit -> 1 `i ]
+"107
+[; ;minute-counter.c: 107:                     if (first_digit > minute){
+[e $ ! > _first_digit _minute 105  ]
+{
+"108
+[; ;minute-counter.c: 108:                         first_digit = second_digit = third_digit = fourth_digit = 0;
+[e = _first_digit = _second_digit = _third_digit = _fourth_digit -> 0 `i ]
+"109
+[; ;minute-counter.c: 109:                     }
+}
+[e :U 105 ]
+"110
+[; ;minute-counter.c: 110:                 }
+}
+[e :U 104 ]
+"111
+[; ;minute-counter.c: 111:             }
+}
+[e :U 103 ]
+"112
+[; ;minute-counter.c: 112:         }
+}
+[e :U 102 ]
+"113
+[; ;minute-counter.c: 113:         _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"114
+[; ;minute-counter.c: 114: }
+[e :UE 100 ]
+}
+"116
+[; ;minute-counter.c: 116: void countdown_to_second (first_digit, second_digit, third_digit, fourth_digit) {
+[v _countdown_to_second `(v ~T0 @X0 1 ef4`i`i`i`i ]
+{
+[e :U _countdown_to_second ]
+[v _first_digit `i ~T0 @X0 1 r4 ]
+[v _second_digit `i ~T0 @X0 1 r3 ]
+[v _third_digit `i ~T0 @X0 1 r2 ]
+[v _fourth_digit `i ~T0 @X0 1 r1 ]
+[f ]
+"117
+[; ;minute-counter.c: 117:     while (first_digit >= 0){
+[e $U 107  ]
+[e :U 108 ]
+{
+"118
+[; ;minute-counter.c: 118:             display_on_first_digit(first_digit);
+[e ( _display_on_first_digit (1 _first_digit ]
+"119
+[; ;minute-counter.c: 119:     display_on_second_digit(second_digit);
+[e ( _display_on_second_digit (1 _second_digit ]
+"120
+[; ;minute-counter.c: 120:     display_colon_on_third_digit();
+[e ( _display_colon_on_third_digit ..  ]
+"121
+[; ;minute-counter.c: 121:     display_on_fourth_digit(third_digit);
+[e ( _display_on_fourth_digit (1 _third_digit ]
+"122
+[; ;minute-counter.c: 122:     display_on_fifth_digit(fourth_digit);
+[e ( _display_on_fifth_digit (1 _fourth_digit ]
+"124
+[; ;minute-counter.c: 124:     if (fourth_digit > 0) {
+[e $ ! > _fourth_digit -> 0 `i 110  ]
+{
+"125
+[; ;minute-counter.c: 125:        fourth_digit--;
+[e -- _fourth_digit -> 1 `i ]
+"126
+[; ;minute-counter.c: 126:     }
+}
+[e $U 111  ]
+"128
+[; ;minute-counter.c: 128:     else {
+[e :U 110 ]
+{
+"129
+[; ;minute-counter.c: 129:         fourth_digit = 9;
+[e = _fourth_digit -> 9 `i ]
+"130
+[; ;minute-counter.c: 130:         third_digit--;
+[e -- _third_digit -> 1 `i ]
+"131
+[; ;minute-counter.c: 131:         if (third_digit < 0){
+[e $ ! < _third_digit -> 0 `i 112  ]
+{
+"132
+[; ;minute-counter.c: 132:             third_digit = 5;
+[e = _third_digit -> 5 `i ]
+"133
+[; ;minute-counter.c: 133:             second_digit--;
+[e -- _second_digit -> 1 `i ]
+"134
+[; ;minute-counter.c: 134:             if (second_digit < 0){
+[e $ ! < _second_digit -> 0 `i 113  ]
+{
+"135
+[; ;minute-counter.c: 135:                 second_digit = 9;
+[e = _second_digit -> 9 `i ]
+"136
+[; ;minute-counter.c: 136:                 first_digit--;
+[e -- _first_digit -> 1 `i ]
+"137
+[; ;minute-counter.c: 137:                 if (first_digit < 0){
+[e $ ! < _first_digit -> 0 `i 114  ]
+{
+"138
+[; ;minute-counter.c: 138:                     first_digit = second_digit = third_digit = fourth_digit = 0;
+[e = _first_digit = _second_digit = _third_digit = _fourth_digit -> 0 `i ]
+"139
+[; ;minute-counter.c: 139:                 }
+}
+[e :U 114 ]
+"140
+[; ;minute-counter.c: 140:             }
+}
+[e :U 113 ]
+"141
+[; ;minute-counter.c: 141:         }
+}
+[e :U 112 ]
+"142
+[; ;minute-counter.c: 142:     }
+}
+[e :U 111 ]
+"143
+[; ;minute-counter.c: 143:         _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"144
+[; ;minute-counter.c: 144:         }
+}
+[e :U 107 ]
+"117
+[; ;minute-counter.c: 117:     while (first_digit >= 0){
+[e $ >= _first_digit -> 0 `i 108  ]
+[e :U 109 ]
+"147
+[; ;minute-counter.c: 147: }
+[e :UE 106 ]
+}
+"149
+[; ;minute-counter.c: 149: void set_time_second2 () {
+[v _set_time_second2 `(v ~T0 @X0 1 ef ]
+{
+[e :U _set_time_second2 ]
+[f ]
+"150
+[; ;minute-counter.c: 150:     if (RB5 == 1){
+[e $ ! == -> _RB5 `i -> 1 `i 116  ]
+{
+"151
+[; ;minute-counter.c: 151:             _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"152
+[; ;minute-counter.c: 152:             while (RB5 == 1) {
+[e $U 117  ]
+[e :U 118 ]
+{
+"153
+[; ;minute-counter.c: 153:                 if (RB4 == 1){
+[e $ ! == -> _RB4 `i -> 1 `i 120  ]
+{
+"154
+[; ;minute-counter.c: 154:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"155
+[; ;minute-counter.c: 155:                 while (RB4 == 1){
+[e $U 121  ]
+[e :U 122 ]
+{
+"156
+[; ;minute-counter.c: 156:                     if (set_second2 > 9) {
+[e $ ! > _set_second2 -> 9 `i 124  ]
+{
+"157
+[; ;minute-counter.c: 157:                             set_second2 = 9;
+[e = _set_second2 -> 9 `i ]
+"158
+[; ;minute-counter.c: 158:                             break;
+[e $U 123  ]
+"159
+[; ;minute-counter.c: 159:                           }
+}
+[e :U 124 ]
+"160
+[; ;minute-counter.c: 160:                     set_second2++;
+[e ++ _set_second2 -> 1 `i ]
+"161
+[; ;minute-counter.c: 161:                     display_on_fifth_digit(set_second2);
+[e ( _display_on_fifth_digit (1 _set_second2 ]
+"162
+[; ;minute-counter.c: 162:                     _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"163
+[; ;minute-counter.c: 163:                 }
+}
+[e :U 121 ]
+"155
+[; ;minute-counter.c: 155:                 while (RB4 == 1){
+[e $ == -> _RB4 `i -> 1 `i 122  ]
+[e :U 123 ]
+"164
+[; ;minute-counter.c: 164:                 }
+}
+[e :U 120 ]
+"165
+[; ;minute-counter.c: 165:             }
+}
+[e :U 117 ]
+"152
+[; ;minute-counter.c: 152:             while (RB5 == 1) {
+[e $ == -> _RB5 `i -> 1 `i 118  ]
+[e :U 119 ]
+"166
+[; ;minute-counter.c: 166:         }
+}
+[e :U 116 ]
+"167
+[; ;minute-counter.c: 167: }
+[e :UE 115 ]
+}
+"169
+[; ;minute-counter.c: 169: void set_time_second1 () {
+[v _set_time_second1 `(v ~T0 @X0 1 ef ]
+{
+[e :U _set_time_second1 ]
+[f ]
+"170
+[; ;minute-counter.c: 170:     if (RB5 == 1){
+[e $ ! == -> _RB5 `i -> 1 `i 126  ]
+{
+"171
+[; ;minute-counter.c: 171:             _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"172
+[; ;minute-counter.c: 172:             while (RB5 == 1) {
+[e $U 127  ]
+[e :U 128 ]
+{
+"173
+[; ;minute-counter.c: 173:                 if (RB4 == 1){
+[e $ ! == -> _RB4 `i -> 1 `i 130  ]
+{
+"174
+[; ;minute-counter.c: 174:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"175
+[; ;minute-counter.c: 175:                 while (RB4 == 1){
+[e $U 131  ]
+[e :U 132 ]
+{
+"176
+[; ;minute-counter.c: 176:                     if (set_second1 > 9) {
+[e $ ! > _set_second1 -> 9 `i 134  ]
+{
+"177
+[; ;minute-counter.c: 177:                             set_second1 = 9;
+[e = _set_second1 -> 9 `i ]
+"178
+[; ;minute-counter.c: 178:                             break;
+[e $U 133  ]
+"179
+[; ;minute-counter.c: 179:                           }
+}
+[e :U 134 ]
+"180
+[; ;minute-counter.c: 180:                     set_second1++;
+[e ++ _set_second1 -> 1 `i ]
+"181
+[; ;minute-counter.c: 181:                     display_on_fourth_digit(set_second1);
+[e ( _display_on_fourth_digit (1 _set_second1 ]
+"182
+[; ;minute-counter.c: 182:                     _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"183
+[; ;minute-counter.c: 183:                 }
+}
+[e :U 131 ]
+"175
+[; ;minute-counter.c: 175:                 while (RB4 == 1){
+[e $ == -> _RB4 `i -> 1 `i 132  ]
+[e :U 133 ]
+"184
+[; ;minute-counter.c: 184:                 }
+}
+[e :U 130 ]
+"185
+[; ;minute-counter.c: 185:             }
+}
+[e :U 127 ]
+"172
+[; ;minute-counter.c: 172:             while (RB5 == 1) {
+[e $ == -> _RB5 `i -> 1 `i 128  ]
+[e :U 129 ]
+"186
+[; ;minute-counter.c: 186:         }
+}
+[e :U 126 ]
+"187
+[; ;minute-counter.c: 187: }
+[e :UE 125 ]
+}
+"189
+[; ;minute-counter.c: 189: void set_time_minute2 () {
+[v _set_time_minute2 `(v ~T0 @X0 1 ef ]
+{
+[e :U _set_time_minute2 ]
+[f ]
+"190
+[; ;minute-counter.c: 190:     if (RB5 == 1){
+[e $ ! == -> _RB5 `i -> 1 `i 136  ]
+{
+"191
+[; ;minute-counter.c: 191:             _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"192
+[; ;minute-counter.c: 192:             while (RB5 == 1) {
+[e $U 137  ]
+[e :U 138 ]
+{
+"193
+[; ;minute-counter.c: 193:                 if (RB4 == 1){
+[e $ ! == -> _RB4 `i -> 1 `i 140  ]
+{
+"194
+[; ;minute-counter.c: 194:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"195
+[; ;minute-counter.c: 195:                 while (RB4 == 1){
+[e $U 141  ]
+[e :U 142 ]
+{
+"196
+[; ;minute-counter.c: 196:                     if (set_minute2 > 9) {
+[e $ ! > _set_minute2 -> 9 `i 144  ]
+{
+"197
+[; ;minute-counter.c: 197:                             set_minute2 = 9;
+[e = _set_minute2 -> 9 `i ]
+"198
+[; ;minute-counter.c: 198:                             break;
+[e $U 143  ]
+"199
+[; ;minute-counter.c: 199:                           }
+}
+[e :U 144 ]
+"200
+[; ;minute-counter.c: 200:                     set_minute2++;
+[e ++ _set_minute2 -> 1 `i ]
+"201
+[; ;minute-counter.c: 201:                     display_on_second_digit(set_minute2);
+[e ( _display_on_second_digit (1 _set_minute2 ]
+"202
+[; ;minute-counter.c: 202:                     _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"203
+[; ;minute-counter.c: 203:                 }
+}
+[e :U 141 ]
+"195
+[; ;minute-counter.c: 195:                 while (RB4 == 1){
+[e $ == -> _RB4 `i -> 1 `i 142  ]
+[e :U 143 ]
+"204
+[; ;minute-counter.c: 204:                 }
+}
+[e :U 140 ]
+"205
+[; ;minute-counter.c: 205:             }
+}
+[e :U 137 ]
+"192
+[; ;minute-counter.c: 192:             while (RB5 == 1) {
+[e $ == -> _RB5 `i -> 1 `i 138  ]
+[e :U 139 ]
+"206
+[; ;minute-counter.c: 206:         }
+}
+[e :U 136 ]
+"207
+[; ;minute-counter.c: 207: }
+[e :UE 135 ]
+}
+"209
+[; ;minute-counter.c: 209: void set_time_minute1 () {
+[v _set_time_minute1 `(v ~T0 @X0 1 ef ]
+{
+[e :U _set_time_minute1 ]
+[f ]
+"210
+[; ;minute-counter.c: 210:     if (RB5 == 1){
+[e $ ! == -> _RB5 `i -> 1 `i 146  ]
+{
+"211
+[; ;minute-counter.c: 211:             _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"212
+[; ;minute-counter.c: 212:             while (RB5 == 1) {
+[e $U 147  ]
+[e :U 148 ]
+{
+"213
+[; ;minute-counter.c: 213:                 if (RB4 == 1){
+[e $ ! == -> _RB4 `i -> 1 `i 150  ]
+{
+"214
+[; ;minute-counter.c: 214:                 _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"215
+[; ;minute-counter.c: 215:                 while (RB4 == 1){
+[e $U 151  ]
+[e :U 152 ]
+{
+"216
+[; ;minute-counter.c: 216:                     if (set_minute1 > 9) {
+[e $ ! > _set_minute1 -> 9 `i 154  ]
+{
+"217
+[; ;minute-counter.c: 217:                             set_minute1 = 9;
+[e = _set_minute1 -> 9 `i ]
+"218
+[; ;minute-counter.c: 218:                             break;
+[e $U 153  ]
+"219
+[; ;minute-counter.c: 219:                           }
+}
+[e :U 154 ]
+"220
+[; ;minute-counter.c: 220:                     set_minute1++;
+[e ++ _set_minute1 -> 1 `i ]
+"221
+[; ;minute-counter.c: 221:                     display_on_first_digit(set_minute1);
+[e ( _display_on_first_digit (1 _set_minute1 ]
+"222
+[; ;minute-counter.c: 222:                     _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"223
+[; ;minute-counter.c: 223:                 }
+}
+[e :U 151 ]
+"215
+[; ;minute-counter.c: 215:                 while (RB4 == 1){
+[e $ == -> _RB4 `i -> 1 `i 152  ]
+[e :U 153 ]
+"224
+[; ;minute-counter.c: 224:                 }
+}
+[e :U 150 ]
+"225
+[; ;minute-counter.c: 225:             }
+}
+[e :U 147 ]
+"212
+[; ;minute-counter.c: 212:             while (RB5 == 1) {
+[e $ == -> _RB5 `i -> 1 `i 148  ]
+[e :U 149 ]
+"226
+[; ;minute-counter.c: 226:         }
+}
+[e :U 146 ]
+"227
+[; ;minute-counter.c: 227: }
+[e :UE 145 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"31
-[; ;minute-counter.c: 31: void main(void) {
+"230
+[; ;minute-counter.c: 230: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"32
-[; ;minute-counter.c: 32:     PORTA = PORTB = PORTC = PORTD = PORTE = 0;
+"246
+[; ;minute-counter.c: 246:     PORTA = PORTB = PORTC = PORTD = PORTE = 0;
 [e = _PORTA = _PORTB = _PORTC = _PORTD = _PORTE -> -> 0 `i `uc ]
-"33
-[; ;minute-counter.c: 33:     TRISB = TRISC = TRISD = 0;
-[e = _TRISB = _TRISC = _TRISD -> -> 0 `i `uc ]
-"34
-[; ;minute-counter.c: 34:     while (1){
-[e :U 97 ]
+"247
+[; ;minute-counter.c: 247:     TRISB = 0B00110000;
+[e = _TRISB -> -> 48 `i `uc ]
+"248
+[; ;minute-counter.c: 248:     TRISC = TRISD = 0;
+[e = _TRISC = _TRISD -> -> 0 `i `uc ]
+"249
+[; ;minute-counter.c: 249:     RB0 = RB1 = RB2 = RB3 = 1;
+[e = _RB0 -> = _RB1 -> = _RB2 -> = _RB3 -> -> 1 `i `b `b `b `b ]
+"250
+[; ;minute-counter.c: 250:         int minute1, minute2, second1, second2;
+[v _minute1 `i ~T0 @X0 1 a ]
+[v _minute2 `i ~T0 @X0 1 a ]
+[v _second1 `i ~T0 @X0 1 a ]
+[v _second2 `i ~T0 @X0 1 a ]
+"251
+[; ;minute-counter.c: 251:     minute1 = minute2 = second1 = second2 = 2;
+[e = _minute1 = _minute2 = _second1 = _second2 -> 2 `i ]
+"252
+[; ;minute-counter.c: 252:     while (1){
+[e :U 157 ]
 {
-"35
-[; ;minute-counter.c: 35:         count++;
-[e ++ _count -> 1 `i ]
-"36
-[; ;minute-counter.c: 36:         PORTD = SEGMENT_MAP[0];
-[e = _PORTD *U + &U _SEGMENT_MAP * -> -> -> 0 `i `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
-"37
-[; ;minute-counter.c: 37:         PORTC = SEGMENT_MAP[count];
-[e = _PORTC *U + &U _SEGMENT_MAP * -> -> _count `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
-"38
-[; ;minute-counter.c: 38:         _delay((unsigned long)((1000)*(20000000/4000.0)));
+"254
+[; ;minute-counter.c: 254:         if (RB5 == 1) {
+[e $ ! == -> _RB5 `i -> 1 `i 159  ]
+{
+"255
+[; ;minute-counter.c: 255:             _delay((unsigned long)((10)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"256
+[; ;minute-counter.c: 256:             while (RB5 == 1){
+[e $U 160  ]
+[e :U 161 ]
+{
+"257
+[; ;minute-counter.c: 257:                 set_time_second2();
+[e ( _set_time_second2 ..  ]
+"258
+[; ;minute-counter.c: 258:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"39
-[; ;minute-counter.c: 39:         PORTB = SEGMENT_MAP[count++];
-[e = _PORTB *U + &U _SEGMENT_MAP * -> -> ++ _count -> 1 `i `ui `ux -> -> # *U &U _SEGMENT_MAP `ui `ux ]
-"40
-[; ;minute-counter.c: 40:     }
+"259
+[; ;minute-counter.c: 259:                 set_time_second1();
+[e ( _set_time_second1 ..  ]
+"260
+[; ;minute-counter.c: 260:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"261
+[; ;minute-counter.c: 261:                 set_time_minute2();
+[e ( _set_time_minute2 ..  ]
+"262
+[; ;minute-counter.c: 262:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"263
+[; ;minute-counter.c: 263:                 set_time_minute1();
+[e ( _set_time_minute1 ..  ]
+"264
+[; ;minute-counter.c: 264:                 _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"265
+[; ;minute-counter.c: 265:             }
 }
-[e :U 96 ]
-[e $U 97  ]
-[e :U 98 ]
-"41
-[; ;minute-counter.c: 41:     return;
-[e $UE 95  ]
-"43
-[; ;minute-counter.c: 43: }
-[e :UE 95 ]
+[e :U 160 ]
+"256
+[; ;minute-counter.c: 256:             while (RB5 == 1){
+[e $ == -> _RB5 `i -> 1 `i 161  ]
+[e :U 162 ]
+"266
+[; ;minute-counter.c: 266:         }
+}
+[e :U 159 ]
+"271
+[; ;minute-counter.c: 271:         _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"272
+[; ;minute-counter.c: 272:         display_on_first_digit(set_minute1);
+[e ( _display_on_first_digit (1 _set_minute1 ]
+"273
+[; ;minute-counter.c: 273:         display_on_second_digit(set_minute2);
+[e ( _display_on_second_digit (1 _set_minute2 ]
+"274
+[; ;minute-counter.c: 274:         display_on_fourth_digit(set_second1);
+[e ( _display_on_fourth_digit (1 _set_second1 ]
+"275
+[; ;minute-counter.c: 275:         display_on_fifth_digit(set_second2);
+[e ( _display_on_fifth_digit (1 _set_second2 ]
+"277
+[; ;minute-counter.c: 277:     }
+}
+[e :U 156 ]
+[e $U 157  ]
+[e :U 158 ]
+"278
+[; ;minute-counter.c: 278:     return;
+[e $UE 155  ]
+"280
+[; ;minute-counter.c: 280: }
+[e :UE 155 ]
 }

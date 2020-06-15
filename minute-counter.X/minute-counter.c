@@ -40,10 +40,6 @@
 unsigned char const SEGMENT_MAP[] = {0x3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7F, 0X6F, 0B00001001};
 
 int count = 0;
-int first_digit = 0;
-int second_digit = 0;
-int third_digit = 0;
-int fourth_digit = 0;
 int set_second1 = 0;
 int set_second2 = 0;
 int set_minute1 = 0;
@@ -53,45 +49,59 @@ void display_on_first_digit(int digit){
     PORTD = SEGMENT_MAP[digit];
 }
 
-void display_on_second_digit(int digit){
+void display_on_second_digit(int digit, int i){
     PORTC = SEGMENT_MAP[digit];
     PORTB = 0B00001110;
-    __delay_ms(10);
+    for (int n = 0; n<i; n++){
+            __delay_ms(1);
+    }
     RB0 = 1;
     
 }
 
-void display_colon_on_third_digit(){
+void display_colon_on_third_digit(int i){
     PORTC = SEGMENT_MAP[10];
     PORTB = 0B00001101;
-    __delay_ms(10);
+    for (int n = 0; n<i; n++){
+            __delay_ms(1);
+    }
     RB1 = 1;
     
 }
 
-void display_on_fourth_digit(int digit){
+void display_on_fourth_digit(int digit, int i){
     PORTC = SEGMENT_MAP[digit];
     PORTB = 0B00001011;
-    __delay_ms(10);
+    for (int n = 0; n<i; n++){
+            __delay_ms(1);
+    }
     RB2 = 1;
     
 }
 
-void display_on_fifth_digit(int digit){
+void display_on_fifth_digit(int digit, int i){
     PORTC = SEGMENT_MAP[digit];
     PORTB = 0B00000111;
-    __delay_ms(10);
+    for (int n = 0; n<i; n++){
+            __delay_ms(1);
+    }
     RB3 = 1;
     
 }
 
+void custom_display_on (int d1, int d2, int d3, int d4, int i) {
+        display_on_first_digit(d1);
+        display_on_second_digit(d2, i);
+        display_colon_on_third_digit(i);
+        display_on_fourth_digit(d3, i);
+        display_on_fifth_digit(d4, i);
+}
+
 void count_to_minutes(int minute) {
-        display_on_first_digit(first_digit);
-        display_on_second_digit(second_digit);
-        display_colon_on_third_digit();
-        display_on_fourth_digit(third_digit);
-        display_on_fifth_digit(fourth_digit);
-        
+    int first_digit, second_digit, third_digit, fourth_digit;
+    first_digit = second_digit = third_digit = fourth_digit = 0;
+    custom_display_on(first_digit, second_digit, third_digit, fourth_digit, 1000);
+    while (first_digit > 0) {
         if (fourth_digit < 9){
             fourth_digit++;
         }
@@ -110,22 +120,23 @@ void count_to_minutes(int minute) {
                 }
             }
         }
-        __delay_ms(10);
+    }
+        
 }
 
-void countdown_to_second (first_digit, second_digit, third_digit, fourth_digit) {
+void countdown_to_second (int first_digit, int second_digit, int third_digit, int fourth_digit) {
+    RB6 = 1;
+        __delay_ms(100);
+        RB6 = 0;
+        __delay_ms(100);
+    custom_display_on(first_digit, second_digit, third_digit, fourth_digit, 10);
     while (first_digit >= 0){
-            display_on_first_digit(first_digit);
-    display_on_second_digit(second_digit);
-    display_colon_on_third_digit();
-    display_on_fourth_digit(third_digit);
-    display_on_fifth_digit(fourth_digit);
+        for (int i = 0; i < 10; i++) {
+            custom_display_on(first_digit, second_digit, third_digit, fourth_digit, 10);
+        }
+        
     
-    if (fourth_digit > 0) {
-       fourth_digit--; 
-    }
-    
-    else {
+    if (fourth_digit < 0) {
         fourth_digit = 9;
         third_digit--;
         if (third_digit < 0){
@@ -139,92 +150,94 @@ void countdown_to_second (first_digit, second_digit, third_digit, fourth_digit) 
                 }
             }
         }
-    } 
-        __delay_ms(10);
+    } else {
+       fourth_digit--; 
+    }
+        
         }
         
 
 }
 
-void set_time_second2 () {
-    if (countdown_button == 1){
+//void set_time_second_minute() {
+//    if (countdown_button == 1) {
+//            __delay_ms(10);
+//            while (countdown_button == 1){
+//                if (set_time_button == 1) {
+//                    __delay_ms(10);
+//                }
+//                    while (set_time_button == 1) {
+//                        set_second2++;
+//                        display_on_fifth_digit(set_second2);
+//                        if (set_second2 > 9) {
+//                            set_second1++;
+//                            display_on_fourth_digit(set_second1);
+//                            set_second2 = 0;
+//                            if (set_second1 > 5) {
+//                                set_minute2++;
+//                                display_on_second_digit(set_minute2);
+//                                set_second1 = 0;
+//                                if (set_minute2 > 9) {
+//                                    set_minute1++;
+//                                    display_on_first_digit(set_minute1);
+//                                    set_minute2 = 0;
+//                                    if (set_minute1 > 9) {
+//                                        set_minute1 = 5;
+//                                        display_on_first_digit(set_minute1);
+//                                        set_minute2 = 9;
+//                                        display_on_second_digit(set_minute2);
+//                                        set_second1 = 5;
+//                                        display_on_fourth_digit(set_second1);
+//                                        set_second2 = 9;
+//                                        display_on_fifth_digit(set_second2);
+//                                    }
+//                                }
+//                        }
+//                }
+//            __delay_ms(1000);
+//            }
+//        }
+//        
+//    }
+//}
+
+void set_time_minute () {
+    custom_display_on(set_minute1, set_minute2, set_second1, set_second2, 10);
+        if (countdown_button == 1) {
             __delay_ms(10);
-            while (countdown_button == 1) {
-                if (set_time_button == 1){
-                __delay_ms(10);
-                while (set_time_button == 1){
-                    if (set_second2 > 9) {
-                            set_second2 = 9; 
-                            break;
-                          }
-                    set_second2++;
-                    display_on_fifth_digit(set_second2);
-                    __delay_ms(1000);
-                }
-                } 
-            } 
+            while (countdown_button == 1){ 
+                custom_display_on(set_minute1, set_minute2, set_second1, set_second2, 10);
+                if (set_time_button == 1) {
+                    __delay_ms(10);
+                    while (set_time_button == 1) {
+                        custom_display_on(set_minute1, set_minute2, set_second1, set_second2, 5);
+                        set_second2++;
+                        if (set_second2 > 9){
+                            set_second1++;
+                            set_second2 = 0;
+                            if (set_second1 > 5){
+                                set_minute2++;
+                                set_second1 = 0;
+                                if (set_minute2 > 9){
+                                    set_minute2 = 0;
+                                    set_minute1++;
+                                    if (set_minute1 > 5){
+                                        set_minute1 = 5;
+                                        set_minute2 = 9;
+                                        set_second1 = 5;
+                                        set_second2 = 9;
+                                    }
+                                }
+                            }
+                        }              
         }
+        
+    }
+        
+    }
+    }
 }
 
-void set_time_second1 () {
-    if (countdown_button == 1){
-            __delay_ms(10);
-            while (countdown_button == 1) {
-                if (set_time_button == 1){
-                __delay_ms(10);
-                while (set_time_button == 1){
-                    if (set_second1 > 9) {
-                            set_second1 = 9; 
-                            break;
-                          }
-                    set_second1++;
-                    display_on_fourth_digit(set_second1);
-                    __delay_ms(1000);
-                }
-                } 
-            } 
-        }
-}
-
-void set_time_minute2 () {
-    if (countdown_button == 1){
-            __delay_ms(10);
-            while (countdown_button == 1) {
-                if (set_time_button == 1){
-                __delay_ms(10);
-                while (set_time_button == 1){
-                    if (set_minute2 > 9) {
-                            set_minute2 = 9; 
-                            break;
-                          }
-                    set_minute2++;
-                    display_on_second_digit(set_minute2);
-                    __delay_ms(1000);
-                }
-                } 
-            } 
-        }
-}
-
-void set_time_minute1 () {
-    if (countdown_button == 1){
-            __delay_ms(10);
-            while (countdown_button == 1) {
-                if (set_time_button == 1){
-                __delay_ms(10);
-                while (set_time_button == 1){
-                    if (set_minute1 > 9) {
-                            set_minute1 = 9; 
-                            break;
-                          }
-                    set_minute1++;
-                    display_on_first_digit(set_minute1);
-                    __delay_ms(1000);
-                }
-                } 
-            } 
-        }
-}
 
 
 void main(void) {
@@ -247,32 +260,13 @@ void main(void) {
     TRISB = 0B00110000;
     TRISC = TRISD = 0;
     RB0 = RB1 = RB2 = RB3 = 1;
-        int minute1, minute2, second1, second2;
-    minute1 = minute2 = second1 = second2 = 2;
     while (1){
-        
-        if (countdown_button == 1) {
-            __delay_ms(10);
-            while (countdown_button == 1){
-                set_time_second2();
-                __delay_ms(1000);
-                set_time_second1();
-                __delay_ms(1000);
-                set_time_minute2();
-                __delay_ms(1000);
-                set_time_minute1();
-                __delay_ms(1000);
-            }
+        custom_display_on(set_minute1, set_minute2, set_second1, set_second2, 10);
+        set_time_minute();
+        if (set_minute2 != 0) {
+            countdown_to_second(set_minute1, set_minute2, set_second1, set_second2);
         }
         
-        
-        
-        
-        __delay_ms(1000);
-        display_on_first_digit(set_minute1);
-        display_on_second_digit(set_minute2);
-        display_on_fourth_digit(set_second1);
-        display_on_fifth_digit(set_second2);
         
     }
     return;
